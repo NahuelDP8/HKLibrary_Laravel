@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('libro', function (Blueprint $table) {
             $table->id();
             $table->string('titulo',100);
-            $table->string('descripcion',200);
+            $table->string('descripcion',10000);
             $table->integer('cantidadPaginas');
+            $table->float('precio', 10, 2);
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as FakerFactory;
 
-class libroSeeder extends Seeder
+class pedidoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,13 +16,15 @@ class libroSeeder extends Seeder
     {
         $faker = FakerFactory::create();
 
-        for($i=0; $i<200; $i++){
-            DB::table('libro')->insert([
-                'titulo' => $faker->sentence(4),
-                'descripcion' => $faker->sentence(400),
-                'cantidadPaginas' => $faker->randomNumber(100,2000),
-                'precio' => $faker->randomFloat(2, 1000, 999999.99),
+        for($i=1; $i<90; $i++){
+            for($j=0; $j<rand(0, 3); $j++){
+                 DB::table('pedido')->insert([
+                'fecha' => $faker->dateTimeBetween('-1 year', 'now'),
+                'idCliente' => $i,
             ]);
         }
+           
+        }
+        
     }
 }

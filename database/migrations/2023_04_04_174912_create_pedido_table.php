@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('pedido', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->timestamps();
             $table->unsignedBigInteger('idCliente');
+            $table->timestamps();
+
             $table->foreign('idCliente')->references('id')->on('cliente');
         });
     }

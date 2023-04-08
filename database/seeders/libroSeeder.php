@@ -20,7 +20,7 @@ class libroSeeder extends Seeder
             DB::table('libro')->insert([
                 'titulo' => $faker->sentence(4),
                 'descripcion' => $faker->sentence(400),
-                'cantidadPaginas' => $faker->randomNumber(100,2000),
+                'cantidadPaginas' => $faker->numberBetween(100,2000),
                 'precio' => $faker->randomFloat(2, 1000, 999999.99),
             ]);
         }

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('pertenece_a', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger('idLibro');
             $table->unsignedBigInteger('idGenero');
+            $table->timestamps();
+
             $table->foreign('idLibro')->references('id')->on('libro');
             $table->foreign('idGenero')->references('id')->on('genero');
         });

@@ -16,9 +16,20 @@ class generoSeeder extends Seeder
     {
         $faker = FakerFactory::create();
 
-        for($i=0; $i<30; $i++){
+        $generos = [
+            'Ficción', 'Drama', 'Misterio', 'Ciencia Ficción', 'Romance', 'Terror',
+            'Acción', 'Aventura', 'Infantil', 'Juvenil', 'Humor', 'Fantasía', 'Histórico',
+            'Poesía', 'Filosofía', 'Político', 'Educativo', 'Científico', 'Biográfico',
+            'Autobiográfico', 'Epistolar', 'Ensayo', 'Periodístico', 'Narrativo',
+            'Novela', 'Novela corta', 'Novela gráfica', 'Cuento', 'Cuento corto', 'Fábula',
+            'Leyenda', 'Mito', 'Teatro', 'Comedia', 'Tragedia', 'Satírico', 'Sainete',
+            'Opera', 'Musical', 'Ballet', 'Zarzuela', 'Vodevil', 'Cabaret', 'Circo',
+            'Magia', 'Cine', 'Televisión', 'Radio', 'Publicidad', 'Marketing'
+        ];
+
+        for($i=0; $i<count($generos); $i++){
             DB::table('genero')->insert([
-                'nombreGenero' => $faker->unique()->word,
+                'nombreGenero' => $generos[$i]
             ]);
         }
     }

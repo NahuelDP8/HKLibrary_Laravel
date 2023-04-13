@@ -119,6 +119,6 @@ Confirmar pedido(Agregar mail, nombre, apellido, dirección)
 
 
 ## DIAGRAMA ENTIDAD-RELACIÓN
-![Diagrama ER](documentacio/DiagramaER.png)  
+![Diagrama ER](documentacion/DiagramaER.png)  
 
 

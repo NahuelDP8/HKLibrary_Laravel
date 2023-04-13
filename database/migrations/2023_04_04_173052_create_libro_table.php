@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('titulo',100);
             $table->string('descripcion',10000);
             $table->integer('cantidadPaginas');
+            $table->string('urlImagen', 4096);
+            $table->boolean('disponible');
             $table->float('precio', 10, 2);
             $table->timestamps();
         });

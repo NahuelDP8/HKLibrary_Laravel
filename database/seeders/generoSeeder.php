@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as FakerFactory;
 
 class generoSeeder extends Seeder
 {
@@ -14,8 +13,6 @@ class generoSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = FakerFactory::create();
-
         $generos = [
             'Ficción', 'Drama', 'Misterio', 'Ciencia Ficción', 'Romance', 'Terror',
             'Acción', 'Aventura', 'Infantil', 'Juvenil', 'Humor', 'Fantasía', 'Histórico',

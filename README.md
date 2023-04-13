@@ -88,8 +88,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Proyecto Framework PHP - Laravel
 ### ¿Qué entidades se podrán actualizar?
 Las entidades que los administradores de la aplicación podrán actualizar serán:
-Autor 
-Libro
+Autor, 
+Libro y
 Género
 
 ### Que reportes se podrán visualizar o generar?
@@ -97,23 +97,28 @@ Los administradores podrán visualizar los pedidos que existen actualmente. Orde
 Fuente de los datos: Entidades Pedidos, Cliente y Libro
 
 ### ¿Qué entidades se podrán obtener por API?
-Libro
-Autor
+Libro   
+Autor  
 Género
 
 ### ¿Qué entidades se podrán modificar por API?
-Pedido
+Pedido    
 
 ## Proyecto Javascript - React/Vue
 ### ¿Qué información podrá ver el usuario? 
-Información sobre:
-los libros disponibles y su información (autores, género, etc)
-los libros que actualmente tiene en su pedido
+Información sobre:   
+los libros disponibles y su información (autores, género, etc)   
+los libros que actualmente tiene en su pedido   
 
 ### ¿Qué acciones podría realizar, ya sea la primera vez que ingrese a la aplicación como futuros accesos a la misma?
-Buscar libros por título, autores o géneros.
-Ver información sobre un libro y sus autores
-Ver pedido
-Añadir libro al pedido
-Confirmar pedido(Agregar mail, nombre, apellido, dirección)
+Buscar libros por título, autores o géneros.   
+Ver información sobre un libro y sus autores   
+Ver pedido   
+Añadir libro al pedido   
+Confirmar pedido(Agregar mail, nombre, apellido, dirección)   
+
+
+## DIAGRAMA ENTIDAD-RELACIÓN
+![Diagrama ER](documentacio/DiagramaER.png)  
+
 

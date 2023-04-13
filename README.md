@@ -83,3 +83,37 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# DOCUMENTACIÓN
+## Proyecto Framework PHP - Laravel
+### ¿Qué entidades se podrán actualizar?
+Las entidades que los administradores de la aplicación podrán actualizar serán:
+Autor 
+Libro
+Género
+
+### Que reportes se podrán visualizar o generar?
+Los administradores podrán visualizar los pedidos que existen actualmente. Ordenarlos por fecha (de más antiguo a más recientes) o por precio (de mayor valor a menor). 
+Fuente de los datos: Entidades Pedidos, Cliente y Libro
+
+### ¿Qué entidades se podrán obtener por API?
+Libro
+Autor
+Género
+
+### ¿Qué entidades se podrán modificar por API?
+Pedido
+
+## Proyecto Javascript - React/Vue
+### ¿Qué información podrá ver el usuario? 
+Información sobre:
+los libros disponibles y su información (autores, género, etc)
+los libros que actualmente tiene en su pedido
+
+### ¿Qué acciones podría realizar, ya sea la primera vez que ingrese a la aplicación como futuros accesos a la misma?
+Buscar libros por título, autores o géneros.
+Ver información sobre un libro y sus autores
+Ver pedido
+Añadir libro al pedido
+Confirmar pedido(Agregar mail, nombre, apellido, dirección)
+

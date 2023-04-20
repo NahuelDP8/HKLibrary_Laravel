@@ -15,7 +15,8 @@ class pedido_libroSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
-        for ($idPedido = 1; $idPedido <= 100; $idPedido++) {
+        $cantPedidos = DB::table('pedido')->count();
+        for ($idPedido = 1; $idPedido <= $cantPedidos; $idPedido++) {
             $arrayIdLibro = [];
             $cantLibrosDistintos = rand(1, 3);
             for ($j = 0; $j <  $cantLibrosDistintos; $j++) {

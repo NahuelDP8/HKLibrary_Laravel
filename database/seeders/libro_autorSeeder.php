@@ -24,7 +24,7 @@ class libro_autorSeeder extends Seeder
                     $idAutor = $faker->numberBetween(1, 200);
                 }
                 $arrayidAutor[] = $idAutor;
-                DB::table('libro_Autor')->insert([
+                DB::table('libro_autor')->insert([
                     'idLibro' => $idLibro,
                     'idAutor' => $idAutor,
                 ]);

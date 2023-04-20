@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contiene', function (Blueprint $table) {
+        Schema::create('pedido_libro', function (Blueprint $table) {
             $table->id();
             $table->integer('cantidadUnidades');
             $table->unsignedBigInteger('idPedido');
             $table->unsignedBigInteger('idLibro');
+            $table->float('precioUnitario', 10, 2);
             $table->timestamps();
 
             $table->foreign('idPedido')->references('id')->on('pedido');
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contiene');
+        Schema::dropIfExists('pedido_libro');
     }
 };

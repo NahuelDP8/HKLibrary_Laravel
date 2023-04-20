@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as FakerFactory;
 
-class pertenece_aSeeder extends Seeder
+class libro_generoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -24,7 +24,7 @@ class pertenece_aSeeder extends Seeder
                     $idGenero = $faker->numberBetween(1, 30);
                 }
                 $arrayidGenero[] = $idGenero;
-                DB::table('pertenece_a')->insert([
+                DB::table('libro_genero')->insert([
                     'idLibro' => $idLibro,
                     'idGenero' => $idGenero,
                 ]);

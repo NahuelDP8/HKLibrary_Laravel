@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as FakerFactory;
 
-class contieneSeeder extends Seeder
+class pedido_libroSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -24,10 +24,12 @@ class contieneSeeder extends Seeder
                     $idLibro = $faker->numberBetween(1, 200);
                 }
                 $arrayIdLibro[] = $idLibro;
-                DB::table('contiene')->insert([
+                $precio =  DB::table('libro')->where('id', $idLibro)->first()->precio;
+                DB::table('pedido_libro')->insert([
                     'cantidadUnidades' => $faker->numberBetween(1, 5),
                     'idPedido' => $idPedido,
                     'idLibro' => $idLibro,
+                    'precioUnitario' => $precio,
                 ]);
             }
         }

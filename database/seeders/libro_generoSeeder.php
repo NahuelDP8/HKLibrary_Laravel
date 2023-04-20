@@ -15,7 +15,7 @@ class libro_generoSeeder extends Seeder
     public function run(): void
     {
         $faker = FakerFactory::create();
-        for ($idLibro = 1; $idLibro < 200; $idLibro++) {
+        for ($idLibro = 1; $idLibro <= 200; $idLibro++) {
             $arrayIdGenero = [];
             $cantGeneroDistintos = rand(1, 3);
             for ($j = 0; $j < $cantGeneroDistintos; $j++) {

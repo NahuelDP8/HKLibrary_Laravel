@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
             generoSeeder::class,
             libroSeeder::class,
             pedidoSeeder::class,
-            contieneSeeder::class,
-            pertenece_aSeeder::class,
+            pedido_libroSeeder::class,
+            libro_generoSeeder::class,
+            libro_autorSeeder::class,
         ]);
     }
 }

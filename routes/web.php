@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::get('/listarLibros', [LibroController::class,'index']);
 
+Route::get('/listarAutores', [AutorController::class,'index']);
+
+Route::get('/listarPedidos', [PedidoController::class,'index']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

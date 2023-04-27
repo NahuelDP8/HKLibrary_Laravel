@@ -7,14 +7,13 @@
     
 </head>
 <body>
-    <div class="container">
-        
-    <div class="d-flex justify-content-between mb-3">
-    <h1 class="mr-auto">Listado de Libros</h1>
-    <button class="btn btn-primary ml-auto">Nuevo Libro</button>
-</div>
+    <div class="container my-5">
+        <div class="d-flex justify-content-between mb-3">
+            <h1 class="mr-auto">Listado de Libros</h1>
+            <button class="btn btn-primary ml-auto">Nuevo Libro</button>
+        </div>
         <div class="table-responsive table-lg">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th class="table-header">Id</th>
@@ -24,7 +23,6 @@
                         <th class="table-header">Precio ($)</th>
                         <th class="table-header">Disponible</th>
                         <th class="table-header">Imagen</th>
-
                     </tr>
                 </thead>
                 <tbody>

@@ -13,7 +13,10 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return view('adminView.pedidosIndex');
+        $pedidos = Pedido::all();
+        return view('adminView.pedidosIndex',[
+            'pedidos' => $pedidos
+        ]);
     }
 
     /**

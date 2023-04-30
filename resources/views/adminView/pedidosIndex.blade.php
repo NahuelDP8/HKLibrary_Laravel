@@ -24,9 +24,9 @@
                     <tr class="table-row">
                         <td>{{ $pedido->id }}</td>
                         <td class="text-center">{{ $pedido->fecha }}</td>
-                        <td>{{ $pedido->id }}</td>
-                        <td>{{ $pedido->id }}</td>
-                        <td class="text-center">{{ $pedido->id }}</td>
+                        <td>{{ $pedido->cliente->nombre_completo}}</td>
+                        <td>{{ $pedido->cliente->mail }}</td>
+                        <td class="text-center">{{ $pedido->precio_total }}</td>
                         <td class="text-center"><button class="btn btn-primary">Ver detalle</button></td>
                     </tr>
                 @endforeach

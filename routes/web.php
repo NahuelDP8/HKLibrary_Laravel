@@ -20,11 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/listarLibros', [LibroController::class,'index']);
+Route::resource('libros', LibroController::class);
 
-Route::get('/listarAutores', [AutorController::class,'index']);
+Route::resource('pedidos', PedidoController::class);
 
-Route::get('/listarPedidos', [PedidoController::class,'index']);
+Route::resource('autores', AutorsController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

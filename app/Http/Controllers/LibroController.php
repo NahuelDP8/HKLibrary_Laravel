@@ -16,7 +16,7 @@ class LibroController extends Controller
 
    
     public function create() {
-        return view('adminView.libros.create');
+        return view('adminView.librosEditCreate');
     }
 
   
@@ -38,25 +38,33 @@ class LibroController extends Controller
 
     
     public function edit(Libro $libro) {
-        return view('libros.edit', compact('libro'));
+        return view('adminView.librosEditCreate', compact('libro'));
     }
+    
 
     
-    public function update(Request $request, Libro $libro) {
+    public function update(Request $request, Libro $libro){
         $request->validate([
-            'titulo' => 'required',
-            'autor' => 'required',
-           
+            'title' => 'required',
         ]);
 
-        $libro->update($request->all()); 
-        return redirect()->route('adminView.libros.index')->with('success', 'Libro actualizado exitosamente'); 
+        
+        $libro->titulo = $request->input('title');
+        $libro->descripcion = $request->input('description');
+        $libro->cantidadPaginas = $request->input('cantPag');
+        $libro->precio = $request->input('price');
+        $libro->urlImagen = $request->input('urlImg');
+    
+        $libro->save();
+    
+        return redirect()->route('adminView.librosIndex')->with('success', 'Libro actualizado exitosamente');
     }
+    
 
     
     public function destroy(Libro $libro) {
         $libro->delete();
-        return redirect()->route('adminView.libros.index')->with('success', 'Libro eliminado exitosamente'); 
+        return redirect()->route('adminView.librosIndex')->with('success', 'Libro eliminado exitosamente'); 
     }
     
 }

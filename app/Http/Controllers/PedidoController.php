@@ -40,7 +40,9 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //
+        return view('adminView.pedidosShow', [
+            'pedido' => $pedido,
+        ]);
     }
 
     /**

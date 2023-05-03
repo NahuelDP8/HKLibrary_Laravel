@@ -27,7 +27,9 @@
                         <td class="px-1 py-0 align-middle">{{ $pedido->cliente->nombre_completo}}</td>
                         <td class="px-1 py-0 align-middle">{{ $pedido->cliente->mail }}</td>
                         <td class="px-1 py-0 text-center align-middle">{{ $pedido->precio_total }}</td>
-                        <td class="px-1 py-0 text-center align-middle"><button class="btn btn-primary">Ver detalle</button></td>
+                        <td class="px-1 py-0 text-center align-middle">
+                            <a class="btn btn-primary" href="{{ route('pedidos.show',$pedido->id) }}">Ver detalle</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -6,16 +6,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-3" >
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="{{ route('pedidos.index') }}">Pedidos</a>
+                    <a class="nav-link link-light menuHover rounded" href="{{ route('pedidos.index') }}">Pedidos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="{{ route('libros.index') }}">Libros</a>
+                    <a class="nav-link link-light menuHover rounded" href="{{ route('libros.index') }}">Libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Autores</a>
+                    <a class="nav-link link-light menuHover rounded" href="#">Autores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Categorias</a>
+                    <a class="nav-link link-light menuHover rounded" href="#">Categorias</a>
                 </li>
             </ul>
         </div>

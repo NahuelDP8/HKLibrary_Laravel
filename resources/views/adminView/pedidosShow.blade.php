@@ -60,6 +60,10 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex flex-column align-items-end">
+    <a class="btn btn-info" href="{{ route('pedidos.index') }}" role="button">Volver</a>
+  </div>
+  
 </div>
 
 @endsection

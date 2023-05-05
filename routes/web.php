@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
@@ -20,11 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('libros', LibroController::class);
+Route::middleware('auth')->group(function(){
+    Route::resource('libros', LibroController::class);
+    Route::resource('pedidos', PedidoController::class)->only(['index','show']);
+    Route::resource('autores', AutorController::class);
+});
 
-Route::resource('pedidos', PedidoController::class);
 
-Route::resource('autores', AutorsController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

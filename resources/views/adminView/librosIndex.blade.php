@@ -21,6 +21,7 @@
                         <tr>
                             <th class="table-header">Id</th>
                             <th class="table-header">Título</th>
+                            <th class="table-header">Autor/es</th>
                             <th class="table-header">Descripción</th>
                             <th class="table-header">Cantidad de Páginas</th>
                             <th class="table-header">Precio ($)</th>
@@ -34,6 +35,11 @@
                             <tr class="table-row">
                                 <td>{{ $libro->id }}</td>
                                 <td>{{ $libro->titulo }}</td>
+                                <td>
+                                @foreach ($libro->autores as $autor)
+                                    {{$autor->nombre}},  {{$autor->apellido}}<br>   
+                                @endforeach
+                                </td>
                                 <td class="text-truncate" style="max-width: 500px">{{ $libro->descripcion }}</td>
                                 <td>{{ $libro->cantidadPaginas }} pags</td>
                                 <td>{{ $libro->precio }}</td>

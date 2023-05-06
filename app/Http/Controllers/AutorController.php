@@ -21,7 +21,8 @@ class AutorController extends Controller
      */
     public function create()
     {
-        //
+        $autores = Autor::all(); // Obtener todos los autores de la tabla
+        return view('adminView.librosEditCreate', compact('autores'));
     }
 
     /**

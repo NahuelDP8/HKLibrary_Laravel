@@ -43,6 +43,22 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+    <label for="autor" class="form-label">Autores</label>
+    <select class="form-select" id="autor" name="autor[]" multiple>
+        @foreach ($libro->autores as $autor)
+            <option value="{{ $autor->id }}">{{ $autor->nombre }} {{ $autor->apellido }}</option>
+        @endforeach
+    </select>
+    <div class="mb-3">
+    <label for="new_autor" class="form-label">Nuevo Autor</label>
+     <select class="form-select" id="new_autor" name="new_autor">
+      <option value="">Seleccione un autor existente</option>
+    </select>
+</div>
+</div>
+
+
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary">{{ isset($libro) ? 'Actualizar' : 'Guardar' }}</button>
             </div>

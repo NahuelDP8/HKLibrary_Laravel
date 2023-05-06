@@ -20,4 +20,8 @@ class Libro extends Model
         return $this->belongsToMany(Pedido::class,'pedido_libro','idLibro','idPedido')
                     ->withPivot('cantidadUnidades','precioUnitario');
     }
+
+    public function generos(){
+        return $this->belongsToMany(Genero::class,'libro_genero','idLibro','idGenero');
+    }
 }

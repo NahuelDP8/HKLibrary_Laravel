@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\AutorController;
 use App\Http\Controllers\api\LibroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function(){
     Route::apiResource('libros', LibroController::class)->only(['index','show']);
+    Route::apiResource('autores', AutorController::class)->only(['index','show']);
 });

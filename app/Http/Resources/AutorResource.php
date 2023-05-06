@@ -14,10 +14,18 @@ class AutorResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $libros = $this->whenLoaded('libros');
+
         return [
             'id' => (string)$this->id,
-            'nombre'=> $this->nombre,
-            'apellido'=> $this->apellido,
+            'type' => 'Autor',
+            'attributes' => [
+                'nombre'=> $this->nombre,
+                'apellido'=> $this->apellido,
+            ],
+            'relationships'=>[
+                'libros' => LibroResource::collection($libros),
+            ],
         ];
     }
 }

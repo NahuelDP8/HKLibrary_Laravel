@@ -14,9 +14,17 @@ class GeneroResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $libros = $this->whenLoaded('libros');
+
         return [
             'id' => (string)$this->id,
-            'nombreGenero'=> $this->nombreGenero,
+            'type' => 'Genero',
+            'attributes' => [
+                'nombre_genero'=> $this->nombreGenero,
+            ],
+            'relationships' => [
+                'libros' => LibroResource::collection($libros),
+            ],
         ];
     }
 }

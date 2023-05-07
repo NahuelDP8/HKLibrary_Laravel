@@ -20,19 +20,14 @@ class LibroResource extends JsonResource
         return [
             'id' => (string)$this->id,
             'type' => 'Libro',
-            'attributes' => [
-                'titulo' => $this->titulo,
-                'precio' => $this->precio,
-                'cantidad_paginas' => (string)$this->cantidadPaginas,
-                'disponibilidad' => $this->disponible,
-                'url_imagen' => $this->urlImagen,
-                'descripcion' => $this->descripcion,
-            ],
-            'relationships' => [
-                'autores' => AutorResource::collection($autores), 
-                'generos' => GeneroResource::collection($generos),
-            ],
-            
+            'titulo' => $this->titulo,
+            'precio' => $this->precio,
+            'cantidad_paginas' => (string)$this->cantidadPaginas,
+            'disponibilidad' => $this->disponible,
+            'url_imagen' => $this->urlImagen,
+            'descripcion' => $this->descripcion,
+            'autores' => AutorResource::collection($autores), 
+            'generos' => GeneroResource::collection($generos),
         ];
     }
 }

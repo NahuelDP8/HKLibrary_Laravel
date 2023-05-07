@@ -26,14 +26,10 @@ class PedidoResource extends JsonResource
         return [
             'id' => $this->id,
             'type' => 'Pedido',
-            'attributes' => [
-                'fecha' => $this->fecha,
-                'precio_total' => $this->precio_total,
-            ],
-            'relationships'=> [
-                'cliente' => $this->cliente,
-                'libros' => $titulosLibros,
-            ],
+            'fecha' => $this->fecha,
+            'precio_total' => $this->precio_total,
+            'cliente' => $this->cliente,
+            'libros' => $titulosLibros,
         ];
     }
 }

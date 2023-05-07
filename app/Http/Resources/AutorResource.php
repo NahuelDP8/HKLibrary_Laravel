@@ -19,13 +19,9 @@ class AutorResource extends JsonResource
         return [
             'id' => (string)$this->id,
             'type' => 'Autor',
-            'attributes' => [
-                'nombre'=> $this->nombre,
-                'apellido'=> $this->apellido,
-            ],
-            'relationships'=>[
-                'libros' => LibroResource::collection($libros),
-            ],
+            'nombre'=> $this->nombre,
+            'apellido'=> $this->apellido,
+            'libros' => LibroResource::collection($libros),
         ];
     }
 }

@@ -19,12 +19,8 @@ class GeneroResource extends JsonResource
         return [
             'id' => (string)$this->id,
             'type' => 'Genero',
-            'attributes' => [
-                'nombre_genero'=> $this->nombreGenero,
-            ],
-            'relationships' => [
-                'libros' => LibroResource::collection($libros),
-            ],
+            'nombre_genero'=> $this->nombreGenero,
+            'libros' => LibroResource::collection($libros),
         ];
     }
 }

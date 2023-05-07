@@ -10,6 +10,7 @@ class Cliente extends Model
 {
     use HasFactory;
     protected $table = 'cliente';
+    protected $hidden = ['created_at','updated_at'];
 
     public function pedidos():HasMany{
         return $this->hasMany(Pedido::class,'idCliente');

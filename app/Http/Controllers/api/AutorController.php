@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AutorResource;
 use App\Models\Autor;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AutorController extends Controller
 {
@@ -22,7 +23,11 @@ class AutorController extends Controller
      */
     public function show(string $id)
     {
-        $autor = Autor::with('libros')->findOrFail($id);
+        try{
+            $autor = Autor::with('libros')->findOrFail($id);
+        }catch(ModelNotFoundException $e){
+            return response()->json(['error'=>'Autor no encontrado'], 404);
+        }
         return new AutorResource($autor);
     }
 }

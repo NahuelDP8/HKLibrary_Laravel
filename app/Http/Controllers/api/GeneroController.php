@@ -12,7 +12,23 @@ use Illuminate\Http\Request;
 class GeneroController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/generos",
+     *      tags={"Generos"},
+     *      description="Devuelve la información de los generos de libros que ofrece la tienda",
+     * 
+     *      @OA\Response(
+     *          response=200,
+     *          description="Los generos pudieron recuperarse exitosamente",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Genero"),
+     *              ),
+     *          ),
+     *      ),
+     * )
      */
     public function index()
     {
@@ -21,7 +37,38 @@ class GeneroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *      path="/generos/{id}",
+     *      tags={"Generos"},
+     *      description="Devuelve la información del genero con la id especificada",
+     * 
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *      ),
+     *      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Genero encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Genero",
+     *              ),
+     *              
+     *          ),
+     *       ),
+     * 
+     *      @OA\Response(
+     *          response=404,
+     *          description="No existe Genero con la id provista",
+     *          @OA\JsonContent(
+     *              example={"error":"Genero No Encontrado"}
+     *          )
+     *       ),
+     * 
+     *     )
      */
     public function show(string $id)
     {

@@ -17,13 +17,16 @@ class LibroController extends Controller
      * 
      *      @OA\Response(
      *          response=200,
-     *          description="Operación exitosa",
-     *          @OA\JsonContent({})
-     *       ),
-     * 
-     * 
-     * 
-     *     )
+     *          description="Los libros pudieron recuperarse exitosamente",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Libro"),
+     *              ),
+     *          ),
+     *      ),
+     * )
      */
     public function index()
     {
@@ -46,8 +49,12 @@ class LibroController extends Controller
      *          response=200,
      *          description="Libro encontrado",
      *          @OA\JsonContent(
-     *              type="array",
-     *              @OA\Items(ref="#/components/schemas/Libro"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Libro",
+     *              ),
+     *              
      *          ),
      *       ),
      * 

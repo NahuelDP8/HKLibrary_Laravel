@@ -11,6 +11,78 @@
         }
     ],
     "paths": {
+        "/generos": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "description": "Devuelve la información de los generos de libros que ofrece la tienda",
+                "operationId": "451b1c5b2bda7c4768031e1f49487d58",
+                "responses": {
+                    "200": {
+                        "description": "Los generos pudieron recuperarse exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Genero"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/generos/{id}": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "description": "Devuelve la información del genero con la id especificada",
+                "operationId": "1bdc2a955938ce859c80c39ba48fd7c9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Genero encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Genero"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe Genero con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Genero No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/libros": {
             "get": {
                 "tags": [
@@ -20,10 +92,20 @@
                 "operationId": "97b0f57b53a99ef52d22077c1fabf00e",
                 "responses": {
                     "200": {
-                        "description": "Operación exitosa",
+                        "description": "Los libros pudieron recuperarse exitosamente",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Libro"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
                             }
                         }
                     }
@@ -49,10 +131,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Libro"
-                                    }
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Libro"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -226,88 +310,140 @@
                 },
                 "type": "object"
             },
+            "Genero": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Genero"
+                    },
+                    "nombre_genero": {
+                        "type": "string",
+                        "example": "Ciencia Ficción"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Libro"
+                                },
+                                "titulo": {
+                                    "type": "string",
+                                    "example": "Titulo del Libro"
+                                },
+                                "precio": {
+                                    "type": "string",
+                                    "example": "500.50"
+                                },
+                                "cantidad_paginas": {
+                                    "type": "integer",
+                                    "example": "1234"
+                                },
+                                "disponibilidad": {
+                                    "type": "boolean",
+                                    "example": "true"
+                                },
+                                "url_imagen": {
+                                    "type": "string",
+                                    "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                                },
+                                "descripcion": {
+                                    "type": "string",
+                                    "example": "Descripcion del libro"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "Libro": {
                 "properties": {
-                    "data": {
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "example": 1
-                            },
-                            "type": {
-                                "type": "string",
-                                "example": "Libro"
-                            },
-                            "titulo": {
-                                "type": "string",
-                                "example": "Titulo Libro"
-                            },
-                            "precio": {
-                                "type": "string",
-                                "example": "940338"
-                            },
-                            "cantidad_paginas": {
-                                "type": "integer",
-                                "example": 1177
-                            },
-                            "disponibilidad": {
-                                "type": "boolean",
-                                "example": false
-                            },
-                            "url_imagen": {
-                                "type": "string",
-                                "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
-                            },
-                            "descripcion": {
-                                "type": "string",
-                                "example": "Descripción del libro"
-                            },
-                            "autores": {
-                                "type": "array",
-                                "items": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": "154"
-                                        },
-                                        "type": {
-                                            "type": "string",
-                                            "example": "Autor"
-                                        },
-                                        "nombre": {
-                                            "type": "string",
-                                            "example": "Mathilde"
-                                        },
-                                        "apellido": {
-                                            "type": "string",
-                                            "example": "Reinger"
-                                        }
-                                    },
-                                    "type": "object"
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Libro"
+                    },
+                    "titulo": {
+                        "type": "string",
+                        "example": "Titulo Libro"
+                    },
+                    "precio": {
+                        "type": "string",
+                        "example": "940338"
+                    },
+                    "cantidad_paginas": {
+                        "type": "integer",
+                        "example": 1177
+                    },
+                    "disponibilidad": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "url_imagen": {
+                        "type": "string",
+                        "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripción del libro"
+                    },
+                    "autores": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Autor"
+                                },
+                                "nombre": {
+                                    "type": "string",
+                                    "example": "Mathilde"
+                                },
+                                "apellido": {
+                                    "type": "string",
+                                    "example": "Reinger"
                                 }
                             },
-                            "generos": {
-                                "type": "array",
-                                "items": {
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": "6"
-                                        },
-                                        "type": {
-                                            "type": "string",
-                                            "example": "Genero"
-                                        },
-                                        "nombre_genero": {
-                                            "type": "string",
-                                            "example": "Terror"
-                                        }
-                                    },
-                                    "type": "object"
+                            "type": "object"
+                        }
+                    },
+                    "generos": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Genero"
+                                },
+                                "nombre_genero": {
+                                    "type": "string",
+                                    "example": "Terror"
                                 }
-                            }
-                        },
-                        "type": "object"
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"

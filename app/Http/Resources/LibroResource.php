@@ -10,9 +10,6 @@ class LibroResource extends JsonResource
     /**
      * @OA\Schema(
      *     schema="Libro",
-     *     @OA\Property(
-     *         property="data",
-     *         type="object",
      *         @OA\Property(
      *             property="id",
      *             type="integer",
@@ -100,7 +97,6 @@ class LibroResource extends JsonResource
      *                 ),
      *             ),
      *         ),
-     *     ),
      * )
      */
     public function toArray(Request $request): array

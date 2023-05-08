@@ -1,0 +1,335 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Libreria",
+        "description": "Esta API puede usarse para obtener información sobre los libros, autores y generos de la librería, y crear un pedido.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/rest/v1"
+        }
+    ],
+    "paths": {
+        "/libros": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve la información de todos los libros de la tienda.",
+                "operationId": "97b0f57b53a99ef52d22077c1fabf00e",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros/{id}": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve la información del libro con la id especificada",
+                "operationId": "e95837776da37090df39d0d80ee6511d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libro encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Libro"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe libro con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Libro No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pedidos": {
+            "post": {
+                "tags": [
+                    "Pedido"
+                ],
+                "summary": "Crear un nuevo pedido",
+                "description": "Crear un nuevo pedido con la información del cliente y los libros elegidos",
+                "operationId": "e65634f7c48d7ab1db83d02751a13dd9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PedidoBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidoCreado"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Formato invalido para los datos"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PedidoBody": {
+                "properties": {
+                    "cliente": {
+                        "properties": {
+                            "nombre": {
+                                "type": "string",
+                                "example": "Tom"
+                            },
+                            "apellido": {
+                                "type": "string",
+                                "example": "Perez"
+                            },
+                            "mail": {
+                                "type": "string",
+                                "format": "email"
+                            },
+                            "direccion": {
+                                "type": "string",
+                                "example": "Calle Bonita 1234"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "3"
+                                },
+                                "cantidad": {
+                                    "type": "integer",
+                                    "example": "4"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PedidoCreado": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 149
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "Pedido"
+                            },
+                            "fecha": {
+                                "type": "string",
+                                "example": "2023-05-08"
+                            },
+                            "precio_total": {
+                                "type": "number",
+                                "example": 2095442.58
+                            },
+                            "cliente": {
+                                "properties": {
+                                    "mail": {
+                                        "description": "The email of the client",
+                                        "type": "string",
+                                        "example": "user@example.com"
+                                    },
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Tom"
+                                    },
+                                    "apellido": {
+                                        "type": "string",
+                                        "example": "Perez"
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "example": "Calle Bonita 1234"
+                                    },
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 107
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "libros": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "titulo": {
+                                            "type": "string",
+                                            "example": "Enim quia culpa nihil est."
+                                        },
+                                        "precio_unitario": {
+                                            "type": "string",
+                                            "example": "698480.86"
+                                        },
+                                        "cantidad_unidades": {
+                                            "type": "integer",
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Libro": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "Libro"
+                            },
+                            "titulo": {
+                                "type": "string",
+                                "example": "Titulo Libro"
+                            },
+                            "precio": {
+                                "type": "string",
+                                "example": "940338"
+                            },
+                            "cantidad_paginas": {
+                                "type": "integer",
+                                "example": 1177
+                            },
+                            "disponibilidad": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "url_imagen": {
+                                "type": "string",
+                                "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                            },
+                            "descripcion": {
+                                "type": "string",
+                                "example": "Descripción del libro"
+                            },
+                            "autores": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "154"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "Autor"
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "Mathilde"
+                                        },
+                                        "apellido": {
+                                            "type": "string",
+                                            "example": "Reinger"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "generos": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "6"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "Genero"
+                                        },
+                                        "nombre_genero": {
+                                            "type": "string",
+                                            "example": "Terror"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Libros",
+            "description": "Listar y mostrar libro."
+        },
+        {
+            "name": "Autores",
+            "description": "Listar y mostrar autor."
+        },
+        {
+            "name": "Generos",
+            "description": "Listar y mostrar generos."
+        },
+        {
+            "name": "Pedido",
+            "description": "Crear pedido."
+        }
+    ]
+}

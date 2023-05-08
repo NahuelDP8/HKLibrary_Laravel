@@ -17,7 +17,7 @@ class AutorResource extends JsonResource
         $libros = $this->whenLoaded('libros');
 
         return [
-            'id' => (string)$this->id,
+            'id' => $this->id,
             'type' => 'Autor',
             'nombre'=> $this->nombre,
             'apellido'=> $this->apellido,

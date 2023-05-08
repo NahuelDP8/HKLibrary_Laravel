@@ -17,7 +17,7 @@ class GeneroResource extends JsonResource
         $libros = $this->whenLoaded('libros');
 
         return [
-            'id' => (string)$this->id,
+            'id' => $this->id,
             'type' => 'Genero',
             'nombre_genero'=> $this->nombreGenero,
             'libros' => LibroResource::collection($libros),

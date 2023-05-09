@@ -11,6 +11,79 @@
         }
     ],
     "paths": {
+        "/autores": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "description": "Devuelve la información de todos los autores que tiene registrados la tienda.",
+                "operationId": "4c3f42b10312ca8fd8ad74da9b613905",
+                "responses": {
+                    "200": {
+                        "description": "Los autores pudieron recuperarse exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Autor"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/autores/{id}": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "description": "Devuelve la información del autor con la id especificada",
+                "operationId": "81fd6d7c19b8f8dbd15266322f1e82e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Autor encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Autor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe Autor con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Autor No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/generos": {
             "get": {
                 "tags": [
@@ -50,7 +123,8 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path"
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -122,7 +196,8 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "path"
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -306,6 +381,67 @@
                             }
                         },
                         "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Autor": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Autor"
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Nombre Autor"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "example": "Apellido Autor"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Libro"
+                                },
+                                "titulo": {
+                                    "type": "string",
+                                    "example": "Titulo del Libro"
+                                },
+                                "precio": {
+                                    "type": "string",
+                                    "example": "500.50"
+                                },
+                                "cantidad_paginas": {
+                                    "type": "integer",
+                                    "example": "1234"
+                                },
+                                "disponibilidad": {
+                                    "type": "boolean",
+                                    "example": "true"
+                                },
+                                "url_imagen": {
+                                    "type": "string",
+                                    "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                                },
+                                "descripcion": {
+                                    "type": "string",
+                                    "example": "Descripcion del libro"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"

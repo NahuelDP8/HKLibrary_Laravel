@@ -45,6 +45,7 @@ class GeneroController extends Controller
      *      @OA\Parameter(
      *          name="id",
      *          in="path",
+     *          required=true
      *      ),
      *      
      *      @OA\Response(

@@ -10,7 +10,23 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class AutorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/autores",
+     *      tags={"Autores"},
+     *      description="Devuelve la información de todos los autores que tiene registrados la tienda.",
+     * 
+     *      @OA\Response(
+     *          response=200,
+     *          description="Los autores pudieron recuperarse exitosamente",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/Autor"),
+     *              ),
+     *          ),
+     *      ),
+     * )
      */
     public function index()
     {
@@ -19,7 +35,39 @@ class AutorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *      path="/autores/{id}",
+     *      tags={"Autores"},
+     *      description="Devuelve la información del autor con la id especificada",
+     * 
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true
+     *      ),
+     *      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Autor encontrado",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/Autor",
+     *              ),
+     *              
+     *          ),
+     *       ),
+     * 
+     *      @OA\Response(
+     *          response=404,
+     *          description="No existe Autor con la id provista",
+     *          @OA\JsonContent(
+     *              example={"error":"Autor No Encontrado"}
+     *          )
+     *       ),
+     * 
+     *     )
      */
     public function show(string $id)
     {

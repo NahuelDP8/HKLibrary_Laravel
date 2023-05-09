@@ -31,6 +31,11 @@ Route::prefix('v1')->group(function(){
 
     Route::get('generos',[GeneroController::class,'index']);
     Route::get('generos/{id}',[GeneroController::class,'show'])->whereNumber('id');
-    
+
     Route::apiResource('pedidos', PedidoController::class)->only(['store']);
+
+
+    Route::fallback(function(){
+        return response()->json(['error'=>'Ruta incorrecta para la API. Revise la documentación.'], 400);
+    });
 });

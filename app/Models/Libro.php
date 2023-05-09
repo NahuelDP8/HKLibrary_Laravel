@@ -11,6 +11,15 @@ class Libro extends Model
     use HasFactory;
     protected $table = 'libro';
     
+    protected $fillable = [
+        'titulo',
+        'descripcion',
+        'cantidadPaginas',
+        'urlImagen',
+        'disponible',
+        'precio',
+    ];
+
     public function autores():BelongsToMany{
         $autor = $this->belongsToMany(Autor::class,'libro_autor','idLibro','idAutor');
         return $autor;

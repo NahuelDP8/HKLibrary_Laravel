@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Libro;
+use App\Models\Autor;
+use App\Models\Genero;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,19 +18,20 @@ class LibroController extends Controller
 
    
     public function create() {
-        return view('adminView.librosEditCreate');
+        $autores = Autor::all();
+        $generos = Genero::all();
+        return view('adminView.librosEditCreate', compact('autores','generos'));
     }
 
   
     public function store(Request $request)  {
         $request->validate([
-            'titulo' => 'required',
-            'autor' => 'required',
-            
+            'titulo' => 'required|string',
         ]);
-
-        Libro::create($request->all()); 
-        return redirect()->route('adminView.libros.index')->with('success', 'Libro creado exitosamente');
+        $libro = Libro::create($request->all()); 
+        $libro->generos()->attach($request->generos);
+        $libro->autores()->attach($request->autores);
+        return redirect()->route('libros.index')->with('success', 'Libro creado exitosamente');
     }
 
   
@@ -38,26 +41,29 @@ class LibroController extends Controller
 
     
     public function edit(Libro $libro) {
-        return view('adminView.librosEditCreate', compact('libro'));
+        $autores = Autor::all();
+        $generos = Genero::all();
+        return view('adminView.librosEditCreate', compact('libro','autores','generos'));
     }
     
 
     
     public function update(Request $request, Libro $libro){
         $request->validate([
-            'title' => 'required',
+            'titulo' => 'required',
         ]);
 
-        
-        $libro->titulo = $request->input('title');
-        $libro->descripcion = $request->input('description');
-        $libro->cantidadPaginas = $request->input('cantPag');
-        $libro->precio = $request->input('price');
-        $libro->urlImagen = $request->input('urlImg');
-    
+       
+        $libro->titulo = $request->input('titulo');
+        $libro->descripcion = $request->input('descripcion');
+        $libro->urlImagen = $request->input('urlImagen');
+        $libro->cantidadPaginas = $request->input('cantidadPaginas');
+        $libro->precio = $request->input('precio');
+        $libro->disponible= $request->input('disponible');
+        $libro->generos()->sync($request->generos);
+        $libro->autores()->sync($request->autores);
         $libro->save();
-    
-        return redirect()->route('adminView.librosIndex')->with('success', 'Libro actualizado exitosamente');
+        return redirect()->route('libros.index')->with('success', 'Libro actualizado exitosamente');
     }
     
 

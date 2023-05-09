@@ -15,7 +15,7 @@
                     <a class="nav-link link-light menuHover rounded" href="#">Autores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light menuHover rounded" href="#">Géneros</a>
+                    <a class="nav-link link-light menuHover rounded" href="{{ route('generos.index') }}">Géneros</a>
                 </li>
             </ul>
         </div>

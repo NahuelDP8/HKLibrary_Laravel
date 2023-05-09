@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LibroController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('libros', LibroController::class);
     Route::resource('pedidos', PedidoController::class)->only(['index','show']);
     Route::resource('autores', AutorController::class);
+    Route::resource('generos',GeneroController::class);
 });
 
 

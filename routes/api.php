@@ -23,8 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function(){
-    Route::apiResource('libros', LibroController::class)->only(['index','show']);
-    Route::apiResource('autores', AutorController::class)->only(['index','show']);
-    Route::apiResource('generos', GeneroController::class)->only(['index','show']);
+    Route::get('libros',[LibroController::class,'index']);
+    Route::get('libros/{id}',[LibroController::class,'show'])->whereNumber('id');
+
+    Route::get('autores',[AutorController::class,'index']);
+    Route::get('autores/{id}',[AutorController::class,'show'])->whereNumber('id');
+
+    Route::get('generos',[GeneroController::class,'index']);
+    Route::get('generos/{id}',[GeneroController::class,'show'])->whereNumber('id');
+    
     Route::apiResource('pedidos', PedidoController::class)->only(['store']);
 });

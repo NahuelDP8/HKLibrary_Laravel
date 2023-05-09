@@ -40,7 +40,7 @@
         <th>Libro</th>
         <th class="text-center">Cantidad</th>
         <th>Precio Unitario</th>
-        <th>Subtotal</th>
+        <th class="text-end">Subtotal</th>
       </tr>
     </thead>
     <tbody>
@@ -49,14 +49,14 @@
           <td>{{ $libro->titulo }}</td>
           <td class="text-center">{{ $libro->pivot->cantidadUnidades }}</td>
           <td>${{ $libro->pivot->precioUnitario }}</td>
-          <td>${{ $libro->pivot->precioUnitario * $libro->pivot->cantidadUnidades }}</td>
+          <td class="text-end">${{ $libro->pivot->precioUnitario * $libro->pivot->cantidadUnidades }}</td>
         </tr>
       @endforeach
     </tbody>
     <tfoot>
       <tr>
         <td colspan="3" class="text-right">Total:</td>
-        <td>${{ $pedido->precio_total }}</td>
+        <td class="text-end">${{ $pedido->precio_total }}</td>
       </tr>
     </tfoot>
   </table>

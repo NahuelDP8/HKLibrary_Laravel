@@ -36,6 +36,6 @@ use App\Http\Controllers\Controller;
  * 
  */
 
-class DummyController extends Controller
+class DocumentationController extends Controller
 {
 }

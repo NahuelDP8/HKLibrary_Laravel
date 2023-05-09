@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Libro;
 use App\Models\Pedido;
+use App\Rules\LibroDisponibleRule;
 use Carbon\CarbonImmutable;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Validation\Rule;
 
 class PedidoController extends Controller
 {
@@ -173,7 +176,7 @@ class PedidoController extends Controller
     {   
         //Validar datos del cliente
         $request->validate([
-            'cliente' =>'present|array:mail,nombre,apellido,direccion',
+            'cliente' =>'required|array:mail,nombre,apellido,direccion',
             'cliente.mail' => 'required|email',
             'cliente.nombre' => 'required|string|max:255',
             'cliente.apellido' => 'required|string|max:255',
@@ -182,18 +185,12 @@ class PedidoController extends Controller
 
         //Validación de los libros
         $request->validate([
-            'libros' => 'present|array',
+            'libros' => 'required|array',
             'libros.*.id' => [
                 'required',
-                'integer',
+                'numeric',
                 'distinct',
-                'exists:libro,id', 
-                function ($attribute, $value, $fail){
-                    $libro = Libro::where('id', $value)->first();
-                    if(!$libro->disponible){
-                        $fail("The book $attribute is not available");
-                    }
-                },
+                'exists:libro,id,disponible,true'
             ],
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);

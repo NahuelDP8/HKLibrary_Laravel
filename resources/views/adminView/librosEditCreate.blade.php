@@ -2,25 +2,25 @@
 
 @section('title', 'Editar Libro')
 @section('content')
-<div class="container">
+<div class="container-fluid my-3 mx-2">
         <h1>{{ isset($libro) ? 'Editar Libro' : 'Crear Libro' }}</h1>
-        <form method="POST" action="{{ isset($libro) ? route('libros.update', $libro->id) : route('libros.store') }}" enctype="multipart/form-data">
+        <form class="me-4" method="POST" action="{{ isset($libro) ? route('libros.update', $libro->id) : route('libros.store') }}" enctype="multipart/form-data">
             @csrf
             @if(isset($libro))
                 @method('PUT')
             @endif
 
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="titulo" class="form-label">Título</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" value="{{ isset($libro) ? $libro->titulo : "" }}">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="description" class="form-label">Descripción</label>
                 <textarea class="form-control" id="description" name="descripcion" rows="4">{{ isset($libro) ? $libro->descripcion : "" }}</textarea>
             </div> 
 
-            <div class="mb-3">
+            <div class="mb-2">
                 <label for="image" class="form-label">Imagen</label>
                 <input type="url" class="form-control-file" id="image" name="urlImagen" value="{{ isset($libro) ? $libro->urlImagen : "" }}">
                 @if(isset($libro) && $libro->urlImagen)
@@ -29,13 +29,13 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mr-5">
                     <div class="mb-3">
                         <label for="cantPag" class="form-label">Cantidad de Páginas</label>
                         <input type="number" class="form-control" id="cantPag" name="cantidadPaginas" value="{{ isset($libro) ? $libro->cantidadPaginas : "" }}">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 ml-5">
                     <div class="mb-3">
                         <label for="price" class="form-label">Precio</label>
                         <input type="number" step="0.01" class="form-control" id="price" name="precio" value="{{ isset($libro) ? $libro->precio : "" }}">
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="form-check">
+        <div class="form-check">
             <input type="hidden" name="disponible" value="0" />
             <input class="form-check-input" type="checkbox" name="disponible" value="1" {{isset($libro) && $libro->disponible || !isset($libro) ? 'checked' : '' }}>
             <label class="form-check-label" for="disponible">Disponible</label>
@@ -76,5 +76,5 @@
                     <button type="submit" class="btn btn-primary">{{ isset($libro) ? 'Actualizar' : 'Guardar' }}</button>
             </div>
         </form>
-    </div>
+</div>
 @endsection

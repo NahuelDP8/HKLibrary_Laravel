@@ -10,12 +10,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container my-5">
+        <div class="container-fluid">
             <div class="d-flex justify-content-between mb-3">
-                <h1 class="mr-auto">Listado de Libros</h1>
-                <a href="{{ route('libros.create') }}" class="btn btn-primary ml-auto">Nuevo Libro</a>
+                <h1 class="mx-auto">Listado de Libros</h1>
+                <a href="{{ route('libros.create') }}" class="btn btn-primary ml-auto me-3">Nuevo Libro</a>
             </div>
-            <div class="table-responsive table-lg">
+            <div class="table-responsive table-lg mx-3">
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
@@ -51,7 +51,7 @@
                                     @endif
                                 </td>
                                 <td><img style="max-height: 50px" src="{{ $libro->urlImagen }}" alt="Imagen del Libro" class="img-fluid"></td> 
-                                <td><a href="{{ route('libros.edit',$libro->id) }}" class="btn btn-primary">Editar</a></td>
+                                <td class=raw><a href="{{ route('libros.edit',$libro->id) }}" class="btn btn-primary btn-lg">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>

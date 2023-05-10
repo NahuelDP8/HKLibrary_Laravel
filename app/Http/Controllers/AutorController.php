@@ -14,16 +14,16 @@ class AutorController extends Controller
     }
 
     public function create(){
-        return view('adminView.autoresIndex', compact('autor'));
+        return view('adminView.autoresEditCreate');
     }
 
     public function store(Request $request){
         $request->validate([
-        'nombre' => 'required|string|max:255',
-        'apellido' => 'required|string|max:255'
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255'
         ]);
-        $autor=Autor::create($request->all());
-        return redirect()->route('autor.index')->with('success', 'Autor creado exitosamente');
+        Autor::create($request->all());
+        return redirect()->route('autores.index')->with('success', 'Autor creado exitosamente');
     }
 
     public function show(Autor $autor)
@@ -32,13 +32,11 @@ class AutorController extends Controller
     }
 
     public function edit(Autor $autor){
-        dd($autor);
         return view('adminView.autoresEditCreate',compact('autor'));
     }
     
 
     public function update(Request $request, Autor $autor){
-        dd($request);
         $request->validate([
             'nombre' => 'required|string|max:255',
             'apellido' => 'required|string|max:255'

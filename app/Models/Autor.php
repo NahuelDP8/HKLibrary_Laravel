@@ -11,6 +11,11 @@ class Autor extends Model
     use HasFactory;
     protected $table = 'autor';
 
+    protected $fillable = [
+        'nombre',
+        'apellido'
+    ];
+
     public function libros(): BelongsToMany{
         $libros = $this->belongsToMany(Libro::class,'libro_autor','idAutor','idLibro');
         return  $libros;

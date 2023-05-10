@@ -25,7 +25,14 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::resource('libros', LibroController::class);
     Route::resource('pedidos', PedidoController::class)->only(['index','show']);
-    Route::resource('autores', AutorController::class);
+
+    Route::get('autores',[AutorController::class,'index'])->name('autores.index');
+    Route::get('autores/create',[AutorController::class,'create'])->name('autores.create');
+    Route::post('autores',[AutorController::class,'store'])->name('autores.store');
+    Route::get('autores/{autor}/edit',[AutorController::class,'edit'])->name('autores.edit');
+    Route::put('autores/{autor}',[AutorController::class,'update'])->name('autores.update');
+
+
     Route::resource('generos',GeneroController::class);
 });
 

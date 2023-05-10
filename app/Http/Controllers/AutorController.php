@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AutorController extends Controller
 {
     public function index(){
-        $autores = Autor::all(); 
+        $autores = Autor::paginate(15); 
         return view('adminView.autoresIndex', compact('autores'));
     }
 

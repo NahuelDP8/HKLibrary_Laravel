@@ -3,7 +3,7 @@
 @section('title',"Pedido Nro. $pedido->id")
 
 @section('content')
-<div class="container">
+<div class="container vh-100">
   <h1 class="row m-0">Pedido</h1>
   <div class="row m-0 mb-3">
     <div class="col p-0 me-2">

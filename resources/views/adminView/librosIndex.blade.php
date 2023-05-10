@@ -9,8 +9,8 @@
         <!-- Agregar enlaces a los estilos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
-    <body>
-        <div class="container-fluid">
+    <body >
+        <div class="container vh-100">
             <div class="d-flex justify-content-between mb-3">
                 <h1 class="mx-auto">Listado de Libros</h1>
                 <a href="{{ route('libros.create') }}" class="btn btn-primary ml-auto me-3">Nuevo Libro</a>
@@ -56,6 +56,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $libros->links() }}
             </div>
         </div>
 

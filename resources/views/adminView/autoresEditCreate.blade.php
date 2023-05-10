@@ -5,7 +5,7 @@
         @section('title','Crear autor')
     @endif
 @section('content')
-<div class="container-fluid my-3 mx-2">
+<div class="container vh-100">
 
         <h1>{{ isset($autor) ? 'Editar autor' : 'Crear autor' }}</h1>
        
@@ -15,7 +15,7 @@
                 @method('PUT')
             @endif
 
-            <div class="mb-2">
+            <div class="mb-2 ">
                 <label for="titulo" class="form-label">Nombre/s </label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="{{ isset($autor) ? $autor->nombre : "" }}">
                 <label for="titulo" class="form-label">Apellido/s </label>

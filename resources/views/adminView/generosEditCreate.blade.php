@@ -2,7 +2,7 @@
 
 @section('title', 'Genero')
 @section('content')
-<div class="container-fluid my-3 mx-2">
+<div class="container vh-100 my-3 mx-2">
         <h1>{{ isset($genero) ? 'Editar Genero' : 'Crear Genero' }}</h1>
         <form class="me-4" method="POST" action="{{ isset($genero) ? route('generos.update', $genero->id) : route('generos.store') }}" enctype="multipart/form-data">
             @csrf

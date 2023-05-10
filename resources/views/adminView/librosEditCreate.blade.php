@@ -6,7 +6,7 @@
         @section('title','Crear Libro')
     @endif
 @section('content')
-<div class="container-fluid my-3 mx-2">
+<div class="container vh-100 min-vw-100 my-3 mx-2">
         <h1>{{ isset($libro) ? 'Editar Libro' : 'Crear Libro' }}</h1>
         <form class="me-4" method="POST" action="{{ isset($libro) ? route('libros.update', $libro->id) : route('libros.store') }}" enctype="multipart/form-data">
             @csrf

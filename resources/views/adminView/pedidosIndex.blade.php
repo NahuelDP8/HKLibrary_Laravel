@@ -3,7 +3,7 @@
 @section('title','Listado Pedidos')
 
 @section('content')
-<div class="container justify-content-center py-2">
+<div class="container vh-100 justify-content-center py-2">
     <div class="d-flex justify-content-between">
         <h1 class="mr-auto">Listado de Pedidos</h1>
     </div>

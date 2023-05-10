@@ -4,14 +4,14 @@
 @section('content')
     <!DOCTYPE html>
     <html>
-    <head>
+    <head >
         <title>Listado de Autores</title>
         <!-- Agregar enlaces a los estilos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container-fluid maxWidth800">
-            <div class="d-flex justify-content-between mb-3 maxWidth800">
+        <div class="container  mt-3 vh-100">
+            <div class="d-flex justify-content-between maxWidth800">
                 <h1 class="mx-auto">Listado de autores</h1>
                 <a href="{{ route('autores.create') }}" class="btn btn-primary ml-auto me-3">Nuevo autor</a>
             </div>
@@ -35,6 +35,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $autores->links() }}
             </div>
         </div>
 

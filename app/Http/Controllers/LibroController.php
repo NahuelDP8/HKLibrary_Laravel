@@ -12,7 +12,7 @@ class LibroController extends Controller
 {
     
     public function index() {
-        $libros = Libro::all();
+        $libros = Libro::paginate(10);
         return view('adminView.librosIndex', compact('libros'));
     }
 
@@ -26,7 +26,12 @@ class LibroController extends Controller
   
     public function store(Request $request)  {
         $request->validate([
-            'titulo' => 'required|string',
+            'titulo' => 'required|string|max:100',
+            'descripcion' => 'required|string|max:10000',
+            'cantidadPaginas' => 'required|integer',
+            'urlImagen' => 'required|string|max:4096',
+            'disponible' => 'required|boolean',
+            'precio' => 'required',
         ]);
         $libro = Libro::create($request->all()); 
         $libro->generos()->attach($request->generos);

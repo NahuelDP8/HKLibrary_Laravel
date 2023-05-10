@@ -8,58 +8,47 @@ use Illuminate\Http\Request;
 
 class AutorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function index(){
+        $autores = Autor::all(); 
+        return view('adminView.autoresIndex', compact('autores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $autores = Autor::all(); // Obtener todos los autores de la tabla
-        return view('adminView.librosEditCreate', compact('autores'));
+    public function create(){
+        return view('adminView.autoresIndex', compact('autor'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+        'nombre' => 'required|string|max:255',
+        'apellido' => 'required|string|max:255'
+        ]);
+        $autor=Autor::create($request->all());
+        return redirect()->route('autor.index')->with('success', 'Autor creado exitosamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Autor $autor)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Autor $autor)
-    {
-        //
+    public function edit(Autor $autor){
+        dd($autor);
+        return view('adminView.autoresEditCreate',compact('autor'));
+    }
+    
+
+    public function update(Request $request, Autor $autor){
+        dd($request);
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255'
+            ]);
+        $autor->nombre = $request->input('nombre');
+        $autor->apellido = $request->input('apellido');
+        $autor->save();
+        return redirect()->route('autores.index')->with('success', 'Autor actualizado exitosamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Autor $autor)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Autor $autor)
     {
         //

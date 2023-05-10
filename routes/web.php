@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function(){
 });
 
 
-Route::resource('autores', AutorController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,6 +1,10 @@
 @extends('adminView.layout.layout')
 
-@section('title', 'Editar Libro')
+    @if(isset($libro))
+        @section('title','Editar Libro')
+    @else
+        @section('title','Crear Libro')
+    @endif
 @section('content')
 <div class="container-fluid my-3 mx-2">
         <h1>{{ isset($libro) ? 'Editar Libro' : 'Crear Libro' }}</h1>

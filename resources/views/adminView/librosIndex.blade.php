@@ -1,6 +1,6 @@
 @extends('adminView.layout.layout')
 
-@section('title','LibrosEditCreate')
+@section('title','Libros')
 @section('content')
     <!DOCTYPE html>
     <html>
@@ -35,12 +35,12 @@
                             <tr class="table-row">
                                 <td>{{ $libro->id }}</td>
                                 <td>{{ $libro->titulo }}</td>
-                                <td>
+                                <td class="fluid maxWidth300">
                                 @foreach ($libro->autores as $autor)
-                                    {{$autor->nombre}},  {{$autor->apellido}}<br>   
+                                    {{$autor->nombre}},  {{$autor->apellido}};    
                                 @endforeach
                                 </td>
-                                <td class="text-truncate" style="max-width: 500px">{{ $libro->descripcion }}</td>
+                                <td class="text-truncate maxWidth500" >{{ $libro->descripcion }}</td>
                                 <td>{{ $libro->cantidadPaginas }} pags</td>
                                 <td>{{ $libro->precio }}</td>
                                 <td>
@@ -51,7 +51,7 @@
                                     @endif
                                 </td>
                                 <td><img style="max-height: 50px" src="{{ $libro->urlImagen }}" alt="Imagen del Libro" class="img-fluid"></td> 
-                                <td class=raw><a href="{{ route('libros.edit',$libro->id) }}" class="btn btn-primary btn-lg">Editar</a></td>
+                                <td class=row><a href="{{ route('libros.edit',$libro->id) }}" class="btn btn-primary">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>

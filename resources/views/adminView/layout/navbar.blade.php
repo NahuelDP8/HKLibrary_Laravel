@@ -12,7 +12,7 @@
                     <a class="nav-link link-light menuHover rounded" href="{{ route('libros.index') }}">Libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light menuHover rounded" href="{{ route('autores.index') }}">Autores</a>
+                    <a class="nav-link link-light menuHover rounded" href="#">Autores</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link-light menuHover rounded" href="{{ route('generos.index') }}">Géneros</a>

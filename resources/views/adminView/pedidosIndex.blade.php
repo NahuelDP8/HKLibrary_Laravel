@@ -6,6 +6,7 @@
 <div class="container vh-100 justify-content-center py-2">
     <div class="d-flex justify-content-between">
         <h1 class="mr-auto">Listado de Pedidos</h1>
+        <a href="#" class="btn btn-primary">Ordenar</a>
     </div>
     <div class="table table-sm">
         <table class="table table-condensed table-bordered table-striped table-hover">

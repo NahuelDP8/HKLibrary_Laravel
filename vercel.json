@@ -11,9 +11,12 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        },
+        {
+            "src": "/storage/(.*)",
+            "dest": "/storage/$1"
         }
     ],
-    "files": ["storage/api-docs/api-docs.json"],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",

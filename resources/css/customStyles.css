@@ -4,6 +4,13 @@
 }
 
 
+.navbarlogo{
+    width: 70px;
+    height: 55px;
+}
+
+
+
 .maxWidth1000{
     max-width: 1000px;
 }

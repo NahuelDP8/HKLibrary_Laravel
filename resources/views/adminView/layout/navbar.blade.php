@@ -1,7 +1,7 @@
 <nav class="navbar sticky-top bg-dark navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif" alt="Bootstrap" width="30" height="24">
+        <img src="{{ asset('images/logoBookShop.png') }}" alt="Logo" class="navbarlogo">
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-3" >

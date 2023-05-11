@@ -5,6 +5,7 @@
     <!DOCTYPE html>
     <html>
     <head>
+    <link rel="icon" type="image/png" href="{{ asset('images/logoBookShop.png') }}" sizes="32x32">
         <title>Listado de Libros</title>
         <!-- Agregar enlaces a los estilos de Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +35,7 @@
                         @foreach ($libros as $libro)
                             <tr class="table-row">
                                 <td>{{ $libro->id }}</td>
-                                <td>{{ $libro->titulo }}</td>
+                                <td class="maxWidth500">{{ $libro->titulo }}</td>
                                 <td class="fluid maxWidth300">
                                 @foreach ($libro->autores as $autor)
                                     {{$autor->nombre}},  {{$autor->apellido}};    

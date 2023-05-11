@@ -13,6 +13,7 @@
             "dest": "/api/index.php"
         }
     ],
+    "files": ["storage/api-docs/api-docs.json"],
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",

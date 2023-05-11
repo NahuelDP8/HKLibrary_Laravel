@@ -294,7 +294,7 @@ return [
          * Constants which can be used in annotations
          */
         'constants' => [
-            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://pixel-pioneers-laravel-azmmksoha-pixel-pioneer.vercel.app'),
+            'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1'),
         ],
     ],
 ];

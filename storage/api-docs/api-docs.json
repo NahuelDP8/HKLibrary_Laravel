@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://pixel-pioneers-laravel-janoalockhart-pixel-pioneer.vercel.app/rest/v1"
+            "url": "https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1"
         }
     ],
     "paths": {

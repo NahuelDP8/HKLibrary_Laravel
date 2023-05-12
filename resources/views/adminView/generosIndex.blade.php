@@ -3,7 +3,6 @@
 @section('title','Generos')
 
 @section('content')
-<div class="container vh-100 justify-content-center py-2">
     <div class="d-flex justify-content-between">
         <h1 class="mr-auto">Generos</h1>
         <a href="{{ route('generos.create') }}" class="btn btn-primary ml-auto me-3">Nuevo Genero</a>
@@ -31,5 +30,4 @@
         </table>
         {{ $generos->links() }}
     </div>
-</div>
 @endsection

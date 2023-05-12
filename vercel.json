@@ -11,6 +11,10 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        },
+        {
+            "src": "/images/(.*)",
+            "dest": "/images/$2"
         }
     ],
     "env": {

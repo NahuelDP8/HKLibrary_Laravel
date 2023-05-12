@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/iconBookShop.ico') }}" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="{{ url('images/iconBookShop.ico') }}" sizes="32x32">
     
     <!-- Agregar enlaces a los estilos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">

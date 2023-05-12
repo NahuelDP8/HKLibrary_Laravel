@@ -16,12 +16,14 @@
     
     <title>@yield('title')</title>
 </head>
-<body> 
+<body class="vh-100 d-flex flex-column"> 
     @include('adminView.layout.navbar')
-    <div class="container">
+    <div class="container flex-grow-1">
         @yield('content')
     </div>
     @include('adminView.layout.footer')
+
+
     <!-- Scripts JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 

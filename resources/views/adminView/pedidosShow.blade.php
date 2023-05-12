@@ -3,7 +3,6 @@
 @section('title',"Pedido Nro. $pedido->id")
 
 @section('content')
-<div class="container vh-100">
   <h1 class="row m-0">Pedido</h1>
   <div class="row m-0 mb-3">
     <div class="col p-0 me-2">
@@ -48,22 +47,19 @@
         <tr>
           <td>{{ $libro->titulo }}</td>
           <td class="text-center">{{ $libro->pivot->cantidadUnidades }}</td>
-          <td>${{ $libro->pivot->precioUnitario }}</td>
-          <td class="text-end">${{ $libro->pivot->precioUnitario * $libro->pivot->cantidadUnidades }}</td>
+          <td>${{ number_format($libro->pivot->precioUnitario, 2, ',', '.') }}</td>
+          <td class="text-end">${{ number_format($libro->pivot->precioUnitario * $libro->pivot->cantidadUnidades, 2, ',', '.') }}</td>
         </tr>
       @endforeach
     </tbody>
     <tfoot>
       <tr>
         <td colspan="3" class="text-right">Total:</td>
-        <td class="text-end">${{ $pedido->precio_total }}</td>
+        <td class="text-end">${{ number_format($pedido->precio_total, 2, ',', '.') }}</td>
       </tr>
     </tfoot>
   </table>
   <div class="d-flex flex-column align-items-end">
     <a class="btn btn-info" href="{{ route('pedidos.index') }}" role="button">Volver</a>
   </div>
-  
-</div>
-
 @endsection

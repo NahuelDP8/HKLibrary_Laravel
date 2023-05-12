@@ -3,43 +3,43 @@
 @section('title',"Pedido Nro. $pedido->id")
 
 @section('content')
-  <h1 class="row m-0">Pedido</h1>
+  <h1 class="row m-0 py-2">Pedido</h1>
   <div class="row m-0 mb-3">
     <div class="col p-0 me-2">
-        <div class="fw-bold">Nro. Pedido:</div> 
-        <div class="border border-3 rounded bg-light"> {{ $pedido->id }}</div>
+        <h5 class="fw-bold m-0">Nro. Pedido:</h5> 
+        <div class="border border-3 rounded bg-light p-2"> {{ $pedido->id }}</div>
     </div>
     <div class="col p-0 ms-2">
-      <div class="fw-bold">Fecha: </div> 
-      <div class="border border-3 rounded bg-light">{{ $pedido->fecha }}</div>
+      <h5 class="fw-bold m-0">Fecha: </h5> 
+      <div class="border border-3 rounded bg-light p-2">{{ $pedido->fecha }}</div>
     </div>
   </div>
 
   <div class="row m-0 mb-3">
     <div class="col p-0 me-2">
-        <div class="fw-bold">Cliente: </div> 
-        <div class="border border-3 rounded bg-light">{{ $pedido->cliente->nombre_completo }}</div>
+        <h5 class="fw-bold m-0">Cliente: </h5> 
+        <div class="border border-3 rounded bg-light p-2">{{ $pedido->cliente->nombre_completo }}</div>
     </div>
     <div class="col p-0 ms-2">
-      <div class="fw-bold">Email:</div>
-      <div class="border border-3 rounded bg-light"> {{ $pedido->cliente->mail }}</div>
+      <h5 class="fw-bold m-0">Email:</h5  >
+      <div class="border border-3 rounded bg-light p-2"> {{ $pedido->cliente->mail }}</div>
     </div>
   </div>
 
   <div class="row m-0 mb-3">
     <div class="col p-0">
-      <div class="fw-bold p-0">Dirección: </div>
-      <div class="border border-3 rounded bg-light">{{ $pedido->cliente->direccion }}</div>
+      <h5 class="fw-bold p-0 m-0">Dirección: </h5>
+      <div class="border border-3 rounded bg-light p-2">{{ $pedido->cliente->direccion }}</div>
     </div>
   </div>
 
   <table class="table table-striped table-hover mt-4">
     <thead>
       <tr>
-        <th>Libro</th>
-        <th class="text-center">Cantidad</th>
-        <th>Precio Unitario</th>
-        <th class="text-end">Subtotal</th>
+        <th class="fs-5">Libro</th>
+        <th class="fs-5 text-center">Cantidad</th>
+        <th class="fs-5">Precio Unitario</th>
+        <th class="fs-5 text-end">Subtotal</th>
       </tr>
     </thead>
     <tbody>

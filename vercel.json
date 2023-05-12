@@ -9,12 +9,12 @@
             "dest": "/build/$1"
         },
         {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
             "src": "/images/(.*)",
             "dest": "/images/$2"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
         }
     ],
     "env": {

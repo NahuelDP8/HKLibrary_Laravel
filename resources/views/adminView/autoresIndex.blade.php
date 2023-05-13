@@ -7,7 +7,7 @@
         <a href="{{ route('autores.create') }}" class="btn btn-primary">Nuevo autor</a>
     </div>
     <div class="table-responsive-xxl">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="datatableAutores" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th class="">Id</th>
@@ -25,6 +25,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $autores->links() }}
     </div>
     @endsection

@@ -7,7 +7,7 @@
         <h1 class="mr-auto">Listado de Pedidos</h1>
     </div>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="dataTablePedidos" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col" class="">Nro. Pedido</th>
@@ -25,7 +25,7 @@
                         <td class="text-center">{{ $pedido->fecha }}</td>
                         <td class="">{{ $pedido->cliente->nombre_completo}}</td>
                         <td class="">{{ $pedido->cliente->mail }}</td>
-                        <td class="text-center">{{ number_format($pedido->precio_total, 2, ',', '.') }}</td>
+                        <td class="text-center">{{ number_format($pedido->precio_total, 2, '.') }}</td>
                         <td class="text-center align-middle p-0">
                             <a class="btn btn-primary" href="{{ route('pedidos.show',$pedido->id) }}">Ver detalle</a>
                         </td>
@@ -33,7 +33,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $pedidos->links() }}
     </div>
 @endsection
 

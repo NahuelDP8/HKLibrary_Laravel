@@ -8,7 +8,7 @@
         <a href="{{ route('generos.create') }}" class="btn btn-primary ml-auto me-3">Nuevo Genero</a>
     </div>
     <div class="table table-sm">
-        <table class="table table-condensed table-bordered table-striped table-hover">
+        <table id="datatableGeneros" class="table table-condensed table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th class="table-header">ID Género</th>
@@ -28,6 +28,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $generos->links() }}
     </div>
 @endsection

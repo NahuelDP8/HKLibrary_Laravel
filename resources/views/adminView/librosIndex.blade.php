@@ -6,7 +6,7 @@
         <a class="btn btn-primary" href="{{ route('libros.create') }}">Nuevo Libro </a>
     </div>  
     <div class="table-responsive-xxl">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="dataTableLibros" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th scope="col" class="">Id</th>
@@ -32,7 +32,7 @@
                         </td>
                         <td class="text-truncate" >{{ Str::limit($libro->descripcion, 40) }}</td>
                         <td class="text-center">{{ $libro->cantidadPaginas }}</td>
-                        <td class="text-center">{{ number_format($libro->precio, 2, ',', '.') }}</td>
+                        <td class="text-center">{{ number_format($libro->precio, 2,'.') }}</td>
                         @if ($libro->disponible == 1) 
                             <td class="table-success text-center"> Disponible </td>
                         @else 
@@ -44,7 +44,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $libros->links() }}
     </div>
 
 @endsection

@@ -13,7 +13,7 @@ class GeneroController extends Controller
      */
     public function index()
     {
-        $generos = Genero::paginate(15);
+        $generos = Genero::all();
         return view('adminView.generosIndex', compact('generos'));
     }
 

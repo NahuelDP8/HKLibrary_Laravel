@@ -13,7 +13,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::paginate(16);
+        $pedidos = Pedido::all();
         return view('adminView.pedidosIndex',[
             'pedidos' => $pedidos
         ]);

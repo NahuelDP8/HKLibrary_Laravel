@@ -31,7 +31,7 @@ class GeneroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre_genero' => 'required|string',
+            'nombre_genero' => 'required|unique:genero,nombreGenero|string',
         ]);
 
         $genero = new Genero();
@@ -64,7 +64,7 @@ class GeneroController extends Controller
     public function update(Request $request, Genero $genero)
     {
         $request->validate([
-            'nombre_genero' => 'required|string'
+            'nombre_genero' => 'required|unique:genero,nombreGenero|string'
         ]);
 
         $genero->nombreGenero = $request->input('nombre_genero');

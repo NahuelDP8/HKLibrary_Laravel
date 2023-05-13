@@ -6,6 +6,8 @@ $(document).ready(function() {
     $('.selectAutores').select2();
 });
 
+/*
+
 $(document).ready(function () {
     $('#datatableAutores').DataTable();
 });
@@ -22,3 +24,4 @@ $(document).ready(function () {
     $('#dataTablePedidos').DataTable();
 });
 
+**/

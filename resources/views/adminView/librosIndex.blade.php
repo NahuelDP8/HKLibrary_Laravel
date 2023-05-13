@@ -10,8 +10,9 @@
             <thead>
                 <tr>
                     <th scope="col" class="">Id</th>
-                    <th scope="col" class="">Título</th>
-                    <th scope="col" class="">Autor/es</th>
+                    <th scope="col" class="maxWidth300">Título</th>
+                    <th scope="col" class="maxWidth300">Autor/es</th>
+                    <th scope="col" class="maxWidth300">Genero/s</th>
                     <th scope="col" class="">Descripción</th>
                     <th scope="col" class="text-center">Nro. de Páginas</th>
                     <th scope="col" class="text-center">Precio ($)</th>
@@ -30,6 +31,11 @@
                             {{$autor->nombre}},  {{$autor->apellido}};    
                         @endforeach
                         </td>
+                        <td class="text-center">
+                                @foreach ($libro->generos as $genero)
+                                    {{$genero->nombreGenero}};    
+                                @endforeach
+                                </td>
                         <td class="text-truncate" >{{ Str::limit($libro->descripcion, 40) }}</td>
                         <td class="text-center">{{ $libro->cantidadPaginas }}</td>
                         <td class="text-center">{{ number_format($libro->precio, 2,'.') }}</td>

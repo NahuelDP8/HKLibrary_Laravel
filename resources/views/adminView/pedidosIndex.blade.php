@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach ($pedidos as $pedido)
+                {{-- @foreach ($pedidos as $pedido)
                     <tr class="">
                         <th scope="row" class="">{{ $pedido->id }}</th>
                         <td class="text-center">{{ $pedido->fecha }}</td>
@@ -30,7 +30,7 @@
                             <a class="btn btn-primary" href="{{ route('pedidos.show',$pedido->id) }}">Ver detalle</a>
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </div>

@@ -13,11 +13,11 @@
                     <th scope="col" class="">Título</th>
                     <th scope="col" class="">Autor/es</th>
                     <th scope="col" class="">Descripción</th>
-                    <th scope="col" class="">Nro. de Páginas</th>
-                    <th scope="col" class="">Precio ($)</th>
-                    <th scope="col" class="">Disponible</th>
-                    <th scope="col" class="">Imagen</th>
-                    <th scope="col" class="">Acciones</th>
+                    <th scope="col" class="text-center">Nro. de Páginas</th>
+                    <th scope="col" class="text-center">Precio ($)</th>
+                    <th scope="col" class="text-center">Disponible</th>
+                    <th scope="col" class="text-center">Imagen</th>
+                    <th scope="col" class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody  class="table-group-divider">
@@ -38,7 +38,7 @@
                         @else 
                             <td class="table-danger text-center"> NO Disponible </td>
                         @endif
-                        <td><img class="text-center img-fluid" src="{{ $libro->urlImagen }}" alt="Imagen del Libro"></td> 
+                        <td><img class="text-center img-fluid maxSize100" src="{{ $libro->urlImagen }}" alt="Imagen del Libro"></td> 
                         <td class="text-center"><a href="{{ route('libros.edit',$libro->id) }}" class="btn btn-primary">Editar</a></td>
                     </tr>
                 @endforeach

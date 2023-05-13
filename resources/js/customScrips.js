@@ -14,7 +14,6 @@ $(document).ready(function () {
     $('#datatableGeneros').DataTable();
 });
 
-/**
 $(document).ready(function () {
     $('#dataTableLibros').DataTable();
 });
@@ -22,4 +21,3 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('#dataTablePedidos').DataTable();
 });
-**/

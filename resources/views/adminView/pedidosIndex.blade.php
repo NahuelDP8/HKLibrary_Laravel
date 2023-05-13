@@ -33,7 +33,6 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $pedidos->links() }}
     </div>
 @endsection
 

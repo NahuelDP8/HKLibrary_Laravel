@@ -129,6 +129,7 @@ Link: https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/
 
 ### Administradores
 Usuario: admin@iaw.com | Contraseña: admin123
+Usuario: pixelpioneers888@gmail.com | Contraseña: admin123
 
 ### API
 Swagger UI: https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1/documentation  

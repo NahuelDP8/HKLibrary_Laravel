@@ -15,6 +15,9 @@
     <!-- Estilos de Datatables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
+    <!-- Logo Font -->
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Monoton/about?query=monoton">
+
     @vite(['resources/css/customStyles.css'])
     
     <title>@yield('title')</title>

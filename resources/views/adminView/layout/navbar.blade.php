@@ -22,6 +22,11 @@
                     <a class="nav-link link-light menuHover rounded" href="{{ route('generos.index') }}">Géneros</a>
                 </li>
             </ul>
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button class="me-3 btn btn-dark fs-5">Log out</button>
+            </form>
+            
         </div>
     </div>
   </nav>

@@ -16,7 +16,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100            dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
                     @auth
@@ -31,14 +31,12 @@
                 </div>
             @endif
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <div class="flex justify-center">
-                    <img src="{{ asset('images/logoBookShop.png') }}" alt="Logo">
+            <div class="max-w-7xl mx-auto p-6 lg:p-8 ">
+                <div class="d-flex flex-column justify-content-center">
+                    <img class="rounded mx-auto d-block"   src="{{ asset('images/logoBookShop.png') }}" alt="Logo">
+                    <img class="rounded mx-auto d-block"  src="{{ asset('images/HKLibrayLogIn.png') }}" alt="Nombre Empresa">
                 </div>
-
-                
-
-                
+            </div>
         </div>
     </body>
 </html>

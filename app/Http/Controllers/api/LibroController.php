@@ -78,4 +78,155 @@ class LibroController extends Controller
         }
         return new LibroResource($libro);
     }
+
+
+    /**
+     * @OA\Get(
+     *      path="/libros/{termino}/searchTitle",
+     *      tags={"Libros"},
+     *      description="Devuelve los libros que contengan en su titulo el termino especificado",
+     * 
+     *      @OA\Parameter(
+     *          name="termino",
+     *          in="path",
+     *          required=true
+     *      ),
+     *      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Libros encontrados",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/LibroShow",
+     *              ),
+     *              
+     *          ),
+     *       ),
+     * 
+     *      @OA\Response(
+     *          response=404,
+     *          description="No se encontraron libros con el termino especificado",
+     *          @OA\JsonContent(
+     *              example={"error":"No se encontraron libros con el termino especificado"}
+     *          )
+     *       ),
+     * 
+     *     )
+     */
+    public function searchByTitle($title){
+        $books = Libro::with('autores','generos')->where('titulo', 'ilike', "%$title%")->get();
+        
+        if(count($books)<=0){
+            return response()->json(['error'=>'No se encontraron libros con el termino especificado'], 404);
+        }
+    
+        return LibroResource::collection($books);
+    }
+
+
+    /**
+     * @OA\Get(
+     *      path="/libros/{genero}/searchGenre",
+     *      tags={"Libros"},
+     *      description="Devuelve los libros que contengan el termino especificado en el parametro",
+     * 
+     *      @OA\Parameter(
+     *          name="genero",
+     *          in="path",
+     *          required=true
+     *      ),
+     *      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Libros encontrados",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/LibroShow",
+     *              ),
+     *              
+     *          ),
+     *       ),
+     * 
+     *      @OA\Response(
+     *          response=404,
+     *          description="No se encontraron libros con el genero especificado",
+     *          @OA\JsonContent(
+     *              example={"error":"No se encontraron libros con el genero especificado"}
+     *          )
+     *       ),
+     * 
+     *     )
+     */
+    public function searchByGenre($genero){
+        $books = Libro::with('autores','generos')->whereHas('generos', function($query) use ($genero){
+            $query->where('nombreGenero','ilike', "%$genero%");
+        })->get();
+
+        if(count($books)<=0){
+            return response()->json(['error'=>'No se encontraron libros con el genero especificado'], 404);
+        }
+
+        return LibroResource::collection($books);
+    }
+
+
+    /**
+     * @OA\Get(
+     *      path="/libros/{nombreAutor}/searchAuthor",
+     *      tags={"Libros"},
+     *      description="Devuelve los libros escritos por el autor especificado. El parametro puede contener mas de un nombre o apellido siempre y cuando esten separados por espacios.",
+     * 
+     *      @OA\Parameter(
+     *          name="nombreAutor",
+     *          in="path",
+     *          required=true
+     *      ),
+     *      
+     *      @OA\Response(
+     *          response=200,
+     *          description="Libros encontrados",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="data",
+     *                  type="object",
+     *                  ref="#/components/schemas/LibroShow",
+     *              ),
+     *              
+     *          ),
+     *       ),
+     * 
+     *      @OA\Response(
+     *          response=404,
+     *          description="No se encontraron libros con los autores especificado",
+     *          @OA\JsonContent(
+     *              example={"error":"No se encontraron libros con los autores especificado"}
+     *          )
+     *       ),
+     * 
+     *     )
+     */
+    public function searchByAuthor($author){
+        
+        $authorStrings = explode(' ', $author);
+
+        $books = Libro::with('autores','generos')->whereHas('autores', function($query) use ($authorStrings){
+            $query->where(function ($subquery) use ($authorStrings) {
+                foreach ($authorStrings as $authorString) {
+                    $subquery->orWhere('nombre', 'ilike', "%$authorString%")
+                        ->orWhere('apellido', 'ilike', "%$authorString%");
+                }
+            });
+        })->get();
+
+        if(count($books)<=0){
+            return response()->json(['error'=>'No se encontraron libros con el autor especificado'], 404);
+        }
+
+        return LibroResource::collection($books);
+
+    }
 }

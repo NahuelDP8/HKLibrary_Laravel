@@ -22,7 +22,7 @@ class LibroController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Libro"),
+     *                  @OA\Items(ref="#/components/schemas/LibroIndex"),
      *              ),
      *          ),
      *      ),
@@ -53,7 +53,7 @@ class LibroController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Libro",
+     *                  ref="#/components/schemas/LibroShow",
      *              ),
      *              
      *          ),

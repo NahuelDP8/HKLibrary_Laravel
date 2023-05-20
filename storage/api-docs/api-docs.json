@@ -174,7 +174,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Libro"
+                                                "$ref": "#/components/schemas/LibroIndex"
                                             }
                                         }
                                     },
@@ -208,7 +208,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Libro"
+                                            "$ref": "#/components/schemas/LibroShow"
                                         }
                                     },
                                     "type": "object"
@@ -410,34 +410,6 @@
                                 "id": {
                                     "type": "integer",
                                     "example": "154"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Libro"
-                                },
-                                "titulo": {
-                                    "type": "string",
-                                    "example": "Titulo del Libro"
-                                },
-                                "precio": {
-                                    "type": "string",
-                                    "example": "500.50"
-                                },
-                                "cantidad_paginas": {
-                                    "type": "integer",
-                                    "example": "1234"
-                                },
-                                "disponibilidad": {
-                                    "type": "boolean",
-                                    "example": "true"
-                                },
-                                "url_imagen": {
-                                    "type": "string",
-                                    "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
-                                },
-                                "descripcion": {
-                                    "type": "string",
-                                    "example": "Descripcion del libro"
                                 }
                             },
                             "type": "object"
@@ -458,7 +430,7 @@
                     },
                     "nombre_genero": {
                         "type": "string",
-                        "example": "Ciencia Ficción"
+                        "example": "Ciencia Ficcion"
                     },
                     "libros": {
                         "type": "array",
@@ -466,35 +438,7 @@
                             "properties": {
                                 "id": {
                                     "type": "integer",
-                                    "example": "154"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Libro"
-                                },
-                                "titulo": {
-                                    "type": "string",
-                                    "example": "Titulo del Libro"
-                                },
-                                "precio": {
-                                    "type": "string",
-                                    "example": "500.50"
-                                },
-                                "cantidad_paginas": {
-                                    "type": "integer",
-                                    "example": "1234"
-                                },
-                                "disponibilidad": {
-                                    "type": "boolean",
-                                    "example": "true"
-                                },
-                                "url_imagen": {
-                                    "type": "string",
-                                    "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
-                                },
-                                "descripcion": {
-                                    "type": "string",
-                                    "example": "Descripcion del libro"
+                                    "example": 1
                                 }
                             },
                             "type": "object"
@@ -503,7 +447,7 @@
                 },
                 "type": "object"
             },
-            "Libro": {
+            "LibroShow": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -536,6 +480,83 @@
                     "descripcion": {
                         "type": "string",
                         "example": "Descripción del libro"
+                    },
+                    "autores": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Autor"
+                                },
+                                "nombre": {
+                                    "type": "string",
+                                    "example": "Mathilde"
+                                },
+                                "apellido": {
+                                    "type": "string",
+                                    "example": "Reinger"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "generos": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "Genero"
+                                },
+                                "nombre_genero": {
+                                    "type": "string",
+                                    "example": "Terror"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LibroIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Libro"
+                    },
+                    "titulo": {
+                        "type": "string",
+                        "example": "Titulo Libro"
+                    },
+                    "precio": {
+                        "type": "string",
+                        "example": "940338"
+                    },
+                    "cantidad_paginas": {
+                        "type": "integer",
+                        "example": 1177
+                    },
+                    "disponibilidad": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "url_imagen": {
+                        "type": "string",
+                        "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
                     },
                     "autores": {
                         "type": "array",

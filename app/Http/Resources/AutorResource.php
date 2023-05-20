@@ -39,41 +39,6 @@ class AutorResource extends JsonResource
      *                     type="integer",
      *                     example="154",
      *                 ),
-     *                 @OA\Property(
-     *                     property="type",
-     *                     type="string",
-     *                     example="Libro",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="titulo",
-     *                     type="string",
-     *                     example="Titulo del Libro",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="precio",
-     *                     type="string",
-     *                     example="500.50",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="cantidad_paginas",
-     *                     type="integer",
-     *                     example="1234",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="disponibilidad",
-     *                     type="boolean",
-     *                     example="true",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="url_imagen",
-     *                     type="string",
-     *                     example="https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="descripcion",
-     *                     type="string",
-     *                     example="Descripcion del libro",
-     *                 ),
      *             ), 
      *         ),
      * )
@@ -87,7 +52,7 @@ class AutorResource extends JsonResource
             'type' => 'Autor',
             'nombre'=> $this->nombre,
             'apellido'=> $this->apellido,
-            'libros' => LibroResource::collection($libros),
+            'libros' => AutorLibroResource::collection($libros),
         ];
     }
 }

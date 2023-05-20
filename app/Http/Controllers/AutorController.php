@@ -26,10 +26,6 @@ class AutorController extends Controller
         return redirect()->route('autores.index')->with('success', 'Autor creado exitosamente');
     }
 
-    public function show(Autor $autor)
-    {
-        //
-    }
 
     public function edit(Autor $autor){
         return view('adminView.autoresEditCreate',compact('autor'));
@@ -47,8 +43,4 @@ class AutorController extends Controller
         return redirect()->route('autores.index')->with('success', 'Autor actualizado exitosamente');
     }
 
-    public function destroy(Autor $autor)
-    {
-        //
-    }
 }

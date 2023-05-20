@@ -5,8 +5,8 @@
 
 
 .navbarlogo{
-    width: 70px;
-    height: 62.5px;
+    max-width: 70px;
+    max-height: 62.5px;
 }
 
 

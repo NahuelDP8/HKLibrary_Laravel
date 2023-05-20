@@ -82,9 +82,5 @@ class LibroController extends Controller
     
 
     
-    public function destroy(Libro $libro) {
-        $libro->delete();
-        return redirect()->route('adminView.librosIndex')->with('success', 'Libro eliminado exitosamente'); 
-    }
-    
+ 
 }

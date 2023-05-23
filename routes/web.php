@@ -25,12 +25,13 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function(){
     Route::resource('libros', LibroController::class)->except(['destroy'])->whereNumber('libro');
     Route::resource('pedidos', PedidoController::class)->only(['index','show'])->whereNumber('pedido');
-    Route::resource('generos',GeneroController::class)->except(['destroy','show'])->whereNumber('genero');
+    Route::resource('generos',GeneroController::class)->except(['destroy'])->whereNumber('genero');
 
     Route::get('autores',[AutorController::class,'index'])->name('autores.index');
     Route::get('autores/create',[AutorController::class,'create'])->name('autores.create');
     Route::post('autores',[AutorController::class,'store'])->name('autores.store');
     Route::get('autores/{autor}/edit',[AutorController::class,'edit'])->name('autores.edit')->whereNumber('autor');
+    Route::get('autores/{autor}',[AutorController::class,'show'])->name('autores.show')->whereNumber('autor');
     Route::put('autores/{autor}',[AutorController::class,'update'])->name('autores.update')->whereNumber('autor');
 });
 

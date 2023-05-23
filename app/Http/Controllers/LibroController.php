@@ -43,7 +43,7 @@ class LibroController extends Controller
 
   
     public function show(Libro $libro) {
-        return view('libros.show', compact('libro'));
+        return redirect()->route('libros.edit', $libro);
     }
 
     

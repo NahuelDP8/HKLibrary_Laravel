@@ -26,6 +26,9 @@ class AutorController extends Controller
         return redirect()->route('autores.index')->with('success', 'Autor creado exitosamente');
     }
 
+    public function show(Autor $autor) {
+        return redirect()->route('autores.edit', $autor);
+    }
 
     public function edit(Autor $autor){
         return view('adminView.autoresEditCreate',compact('autor'));

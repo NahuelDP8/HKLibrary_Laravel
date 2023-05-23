@@ -30,6 +30,10 @@ class GeneroController extends Controller
 
     }
 
+    public function show(Genero $genero) {
+        return redirect()->route('generos.edit', $genero);
+    }
+
     public function edit(Genero $genero)
     {
         return view('adminView.generosEditCreate',compact('genero'));

@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function(){
     Route::get('libros',[LibroController::class,'index']);
     Route::get('libros/{id}',[LibroController::class,'show'])->whereNumber('id');
-    Route::get('libros/{termino}/searchTitle',[LibroController::class,'searchByTitle']);
+    Route::get('libros/{titulo}/searchTitle',[LibroController::class,'searchByTitle']);
     Route::get('libros/{genero}/searchGenre',[LibroController::class,'searchByGenre']);
     Route::get('libros/{nombreAutor}/searchAuthor',[LibroController::class,'searchByAuthor']);
 

@@ -82,12 +82,12 @@ class LibroController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/libros/{termino}/searchTitle",
+     *      path="/libros/{titulo}/searchTitle",
      *      tags={"Libros"},
      *      description="Devuelve los libros que contengan en su titulo el termino especificado",
      * 
      *      @OA\Parameter(
-     *          name="termino",
+     *          name="titulo",
      *          in="path",
      *          required=true
      *      ),

@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Libreria",
-        "description": "Esta API puede usarse para obtener información sobre los libros, autores y generos de la librería, y crear un pedido.\r\n *      Si la url para la API no tiene el formato adecuado o no existe, se retornará un json con un mensaje indicándoselo.",
+        "description": "Esta API puede usarse para obtener información sobre los libros, autores y generos de la librería, y crear un pedido.\n *      Si la url para la API no tiene el formato adecuado o no existe, se retornará un json con un mensaje indicándoselo.",
         "version": "1.0.0"
     },
     "servers": [
@@ -230,16 +230,16 @@
                 }
             }
         },
-        "/libros/{termino}/searchTitle": {
+        "/libros/{titulo}/searchTitle": {
             "get": {
                 "tags": [
                     "Libros"
                 ],
                 "description": "Devuelve los libros que contengan en su titulo el termino especificado",
-                "operationId": "98c04253b34d6d0edf80f27e2cdabe6b",
+                "operationId": "346f9e4a88457feb0f17fca4384a99b0",
                 "parameters": [
                     {
-                        "name": "termino",
+                        "name": "titulo",
                         "in": "path",
                         "required": true
                     }

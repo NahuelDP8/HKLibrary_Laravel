@@ -31,7 +31,7 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::with('autores','generos')->get();
+        $libros = Libro::with('autores','generos')->where('disponible',true)->get();
         return LibroResource::collection($libros);
     }
 
@@ -73,7 +73,7 @@ class LibroController extends Controller
     public function show($id)
     {
         try{
-            $libro = Libro::with('autores','generos')->findOrFail($id);
+            $libro = Libro::with('autores','generos')->where('disponible',true)->findOrFail($id);
         }catch(ModelNotFoundException $e){
             return response()->json(['error'=>'Libro no encontrado'], 404);
         }
@@ -117,7 +117,7 @@ class LibroController extends Controller
      *     )
      */
     public function searchByTitle($title){
-        $books = Libro::with('autores','generos')->where('titulo', 'ilike', "%$title%")->get();
+        $books = Libro::with('autores','generos')->where('titulo', 'ilike', "%$title%")->where('disponible',true)->get();
         
         if(count($books)<=0){
             return response()->json(['error'=>'No se encontraron libros con el termino especificado'], 404);
@@ -165,7 +165,7 @@ class LibroController extends Controller
     public function searchByGenre($genero){
         $books = Libro::with('autores','generos')->whereHas('generos', function($query) use ($genero){
             $query->where('nombreGenero','ilike', "%$genero%");
-        })->get();
+        })->where('disponible',true)->get();
 
         if(count($books)<=0){
             return response()->json(['error'=>'No se encontraron libros con el genero especificado'], 404);
@@ -224,7 +224,7 @@ class LibroController extends Controller
                         ->orWhere('apellido', 'ilike', "%$authorString%");
                 }
             });
-        })->get();
+        })->where('disponible',true)->get();
 
         if(count($books)<=0){
             return response()->json(['error'=>'No se encontraron libros con el autor especificado'], 404);

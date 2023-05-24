@@ -28,7 +28,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Autor"
+                                                "$ref": "#/components/schemas/AutorIndex"
                                             }
                                         }
                                     },
@@ -45,7 +45,7 @@
                 "tags": [
                     "Autores"
                 ],
-                "description": "Devuelve la información del autor con la id especificada",
+                "description": "Devuelve la información del autor con la id especificada. Incluyendo los libros de su autoría que esten disponibles en la tienda.",
                 "operationId": "81fd6d7c19b8f8dbd15266322f1e82e9",
                 "parameters": [
                     {
@@ -62,7 +62,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Autor"
+                                            "$ref": "#/components/schemas/AutorShow"
                                         }
                                     },
                                     "type": "object"
@@ -101,7 +101,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Genero"
+                                                "$ref": "#/components/schemas/GeneroIndex"
                                             }
                                         }
                                     },
@@ -135,7 +135,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Genero"
+                                            "$ref": "#/components/schemas/GeneroShow"
                                         }
                                     },
                                     "type": "object"
@@ -517,7 +517,7 @@
                 },
                 "type": "object"
             },
-            "Autor": {
+            "AutorShow": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -538,19 +538,34 @@
                     "libros": {
                         "type": "array",
                         "items": {
-                            "properties": {
-                                "id": {
-                                    "type": "integer",
-                                    "example": "154"
-                                }
-                            },
-                            "type": "object"
+                            "$ref": "#/components/schemas/LibroIndex"
                         }
                     }
                 },
                 "type": "object"
             },
-            "Genero": {
+            "AutorIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Autor"
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Nombre Autor"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "example": "Apellido Autor"
+                    }
+                },
+                "type": "object"
+            },
+            "GeneroShow": {
                 "properties": {
                     "id": {
                         "type": "integer",
@@ -562,19 +577,30 @@
                     },
                     "nombre_genero": {
                         "type": "string",
-                        "example": "Ciencia Ficcion"
+                        "example": "Terror"
                     },
                     "libros": {
                         "type": "array",
                         "items": {
-                            "properties": {
-                                "id": {
-                                    "type": "integer",
-                                    "example": 1
-                                }
-                            },
-                            "type": "object"
+                            "$ref": "#/components/schemas/LibroIndex"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "GeneroIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Genero"
+                    },
+                    "nombre_genero": {
+                        "type": "string",
+                        "example": "Terror"
                     }
                 },
                 "type": "object"
@@ -584,10 +610,6 @@
                     "id": {
                         "type": "integer",
                         "example": 1
-                    },
-                    "type": {
-                        "type": "string",
-                        "example": "Libro"
                     },
                     "titulo": {
                         "type": "string",
@@ -621,10 +643,6 @@
                                     "type": "integer",
                                     "example": "154"
                                 },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Autor"
-                                },
                                 "nombre": {
                                     "type": "string",
                                     "example": "Mathilde"
@@ -645,10 +663,6 @@
                                     "type": "integer",
                                     "example": "6"
                                 },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Genero"
-                                },
                                 "nombre_genero": {
                                     "type": "string",
                                     "example": "Terror"
@@ -665,10 +679,6 @@
                     "id": {
                         "type": "integer",
                         "example": 1
-                    },
-                    "type": {
-                        "type": "string",
-                        "example": "Libro"
                     },
                     "titulo": {
                         "type": "string",
@@ -698,10 +708,6 @@
                                     "type": "integer",
                                     "example": "154"
                                 },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Autor"
-                                },
                                 "nombre": {
                                     "type": "string",
                                     "example": "Mathilde"
@@ -721,10 +727,6 @@
                                 "id": {
                                     "type": "integer",
                                     "example": "6"
-                                },
-                                "type": {
-                                    "type": "string",
-                                    "example": "Genero"
                                 },
                                 "nombre_genero": {
                                     "type": "string",

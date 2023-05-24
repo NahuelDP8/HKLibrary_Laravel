@@ -9,7 +9,7 @@ class GeneroResource extends JsonResource
 {
     /**
      * @OA\Schema(
-     *     schema="Genero",
+     *     schema="GeneroShow",
      *     @OA\Property(
      *         property="id",
      *         type="integer",
@@ -23,33 +23,45 @@ class GeneroResource extends JsonResource
      *     @OA\Property(
      *         property="nombre_genero",
      *         type="string",
-     *         example="Ciencia Ficcion",
+     *         example="Terror",
      *     ),
      *     @OA\Property(
      *         property="libros",
      *         type="array",
-     *         @OA\Items(
-     *              @OA\Property(
-     *                  property="id",
-     *                  type="integer",
-     *                  example=1,
-     *              ),
-     *         ),
-     *         
+     *         @OA\Items(ref="#/components/schemas/LibroIndex"),
+     *     ),
+     * )
+     * 
+     * @OA\Schema(
+     *     schema="GeneroIndex",
+     *     @OA\Property(
+     *         property="id",
+     *         type="integer",
+     *         example=1,
+     *     ),
+     *     @OA\Property(
+     *         property="type",
+     *         type="string",
+     *         example="Genero",
+     *     ),
+     *     @OA\Property(
+     *         property="nombre_genero",
+     *         type="string",
+     *         example="Terror",
      *     ),
      * )
      */
 
     public function toArray(Request $request): array
     {
-        $libros = $this->whenLoaded('libros');
-
         $data = [
             'id' => $this->id,
-            'type' => 'Genero',
             'nombre_genero'=> $this->nombreGenero,
-            'libros' => GeneroLibroResource::collection($libros),
         ];
+
+        if ($request->route()->getActionMethod() === 'show') {
+            $data['libros'] = GeneroLibroResource::collection($this->libros);
+        }
 
         return $data;
     }

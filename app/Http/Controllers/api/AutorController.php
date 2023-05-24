@@ -22,7 +22,7 @@ class AutorController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Autor"),
+     *                  @OA\Items(ref="#/components/schemas/AutorIndex"),
      *              ),
      *          ),
      *      ),
@@ -38,7 +38,7 @@ class AutorController extends Controller
      * @OA\Get(
      *      path="/autores/{id}",
      *      tags={"Autores"},
-     *      description="Devuelve la información del autor con la id especificada",
+     *      description="Devuelve la información del autor con la id especificada. Incluyendo los libros de su autoría que esten disponibles en la tienda.",
      * 
      *      @OA\Parameter(
      *          name="id",
@@ -53,7 +53,7 @@ class AutorController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Autor",
+     *                  ref="#/components/schemas/AutorShow",
      *              ),
      *              
      *          ),

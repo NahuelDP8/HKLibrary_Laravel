@@ -16,11 +16,6 @@ class LibroResource extends JsonResource
      *             example=1,
      *         ),
      *         @OA\Property(
-     *             property="type",
-     *             type="string",
-     *             example="Libro",
-     *         ),
-     *         @OA\Property(
      *             property="titulo",
      *             type="string",
      *             example="Titulo Libro",
@@ -60,11 +55,6 @@ class LibroResource extends JsonResource
      *                     example="154",
      *                 ),
      *                 @OA\Property(
-     *                     property="type",
-     *                     type="string",
-     *                     example="Autor",
-     *                 ),
-     *                 @OA\Property(
      *                     property="nombre",
      *                     type="string",
      *                     example="Mathilde",
@@ -86,11 +76,6 @@ class LibroResource extends JsonResource
      *                     example="6",
      *                 ),
      *                 @OA\Property(
-     *                     property="type",
-     *                     type="string",
-     *                     example="Genero",
-     *                 ),
-     *                 @OA\Property(
      *                     property="nombre_genero",
      *                     type="string",
      *                     example="Terror",
@@ -105,11 +90,6 @@ class LibroResource extends JsonResource
      *             property="id",
      *             type="integer",
      *             example=1,
-     *         ),
-     *         @OA\Property(
-     *             property="type",
-     *             type="string",
-     *             example="Libro",
      *         ),
      *         @OA\Property(
      *             property="titulo",
@@ -146,11 +126,6 @@ class LibroResource extends JsonResource
      *                     example="154",
      *                 ),
      *                 @OA\Property(
-     *                     property="type",
-     *                     type="string",
-     *                     example="Autor",
-     *                 ),
-     *                 @OA\Property(
      *                     property="nombre",
      *                     type="string",
      *                     example="Mathilde",
@@ -172,11 +147,6 @@ class LibroResource extends JsonResource
      *                     example="6",
      *                 ),
      *                 @OA\Property(
-     *                     property="type",
-     *                     type="string",
-     *                     example="Genero",
-     *                 ),
-     *                 @OA\Property(
      *                     property="nombre_genero",
      *                     type="string",
      *                     example="Terror",
@@ -187,19 +157,15 @@ class LibroResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $autores = $this->whenLoaded('autores');
-        $generos = $this->whenLoaded('generos');
-
         $data = [
             'id' => $this->id,
-            'type' => 'Libro',
             'titulo' => $this->titulo,
             'precio' => $this->precio,
             'cantidad_paginas' => $this->cantidadPaginas,
             'disponibilidad' => $this->disponible,
             'url_imagen' => $this->urlImagen,
-            'autores' => AutorResource::collection($autores), 
-            'generos' => GeneroResource::collection($generos),
+            'autores' => LibroAutorResource::collection($this->autores), 
+            'generos' => LibroGeneroResource::collection($this->generos),
         ];
 
         if ($request->route()->getActionMethod() === 'show') {

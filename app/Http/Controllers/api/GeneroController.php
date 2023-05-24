@@ -24,7 +24,7 @@ class GeneroController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="array",
-     *                  @OA\Items(ref="#/components/schemas/Genero"),
+     *                  @OA\Items(ref="#/components/schemas/GeneroIndex"),
      *              ),
      *          ),
      *      ),
@@ -55,7 +55,7 @@ class GeneroController extends Controller
      *              @OA\Property(
      *                  property="data",
      *                  type="object",
-     *                  ref="#/components/schemas/Genero",
+     *                  ref="#/components/schemas/GeneroShow",
      *              ),
      *              
      *          ),

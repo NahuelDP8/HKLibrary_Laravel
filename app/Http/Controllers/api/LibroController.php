@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\LibroResource;
 use App\Models\Libro;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
 
 class LibroController extends Controller
 {
@@ -210,8 +211,11 @@ class LibroController extends Controller
      *     )
      */
     public function searchByAuthor($author){
-        
-        $authorStrings = explode(' ', $author);
+        $authorStrings = Str::of($author)->explode(' ');
+
+        $authorStrings = $authorStrings->filter(function ($value) {
+            return $value !== "";
+        });
 
         $books = Libro::with('autores','generos')->whereHas('autores', function($query) use ($authorStrings){
             $query->where(function ($subquery) use ($authorStrings) {

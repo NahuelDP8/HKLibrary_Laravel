@@ -16,11 +16,6 @@ class GeneroResource extends JsonResource
      *         example=1,
      *     ),
      *     @OA\Property(
-     *         property="type",
-     *         type="string",
-     *         example="Genero",
-     *     ),
-     *     @OA\Property(
      *         property="nombre_genero",
      *         type="string",
      *         example="Terror",
@@ -38,11 +33,6 @@ class GeneroResource extends JsonResource
      *         property="id",
      *         type="integer",
      *         example=1,
-     *     ),
-     *     @OA\Property(
-     *         property="type",
-     *         type="string",
-     *         example="Genero",
      *     ),
      *     @OA\Property(
      *         property="nombre_genero",

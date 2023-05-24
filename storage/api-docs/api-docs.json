@@ -252,7 +252,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/LibroShow"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -296,7 +299,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/LibroShow"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -340,7 +346,10 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/LibroShow"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -429,7 +438,7 @@
                             "properties": {
                                 "id": {
                                     "type": "integer",
-                                    "example": "3"
+                                    "example": "2"
                                 },
                                 "cantidad": {
                                     "type": "integer",
@@ -453,10 +462,6 @@
                                 "type": "integer",
                                 "example": 149
                             },
-                            "type": {
-                                "type": "string",
-                                "example": "Pedido"
-                            },
                             "fecha": {
                                 "type": "string",
                                 "example": "2023-05-08"
@@ -467,10 +472,9 @@
                             },
                             "cliente": {
                                 "properties": {
-                                    "mail": {
-                                        "description": "The email of the client",
-                                        "type": "string",
-                                        "example": "user@example.com"
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 107
                                     },
                                     "nombre": {
                                         "type": "string",
@@ -484,9 +488,10 @@
                                         "type": "string",
                                         "example": "Calle Bonita 1234"
                                     },
-                                    "id": {
-                                        "type": "integer",
-                                        "example": 107
+                                    "mail": {
+                                        "description": "The email of the client",
+                                        "type": "string",
+                                        "example": "user@example.com"
                                     }
                                 },
                                 "type": "object"
@@ -523,10 +528,6 @@
                         "type": "integer",
                         "example": 1
                     },
-                    "type": {
-                        "type": "string",
-                        "example": "Autor"
-                    },
                     "nombre": {
                         "type": "string",
                         "example": "Nombre Autor"
@@ -550,10 +551,6 @@
                         "type": "integer",
                         "example": 1
                     },
-                    "type": {
-                        "type": "string",
-                        "example": "Autor"
-                    },
                     "nombre": {
                         "type": "string",
                         "example": "Nombre Autor"
@@ -570,10 +567,6 @@
                     "id": {
                         "type": "integer",
                         "example": 1
-                    },
-                    "type": {
-                        "type": "string",
-                        "example": "Genero"
                     },
                     "nombre_genero": {
                         "type": "string",
@@ -593,10 +586,6 @@
                     "id": {
                         "type": "integer",
                         "example": 1
-                    },
-                    "type": {
-                        "type": "string",
-                        "example": "Genero"
                     },
                     "nombre_genero": {
                         "type": "string",

@@ -16,11 +16,6 @@ class AutorResource extends JsonResource
      *             example=1,
      *         ),
      *         @OA\Property(
-     *             property="type",
-     *             type="string",
-     *             example="Autor",
-     *         ),
-     *         @OA\Property(
      *             property="nombre",
      *             type="string",
      *             example="Nombre Autor",
@@ -43,11 +38,6 @@ class AutorResource extends JsonResource
      *             property="id",
      *             type="integer",
      *             example=1,
-     *         ),
-     *         @OA\Property(
-     *             property="type",
-     *             type="string",
-     *             example="Autor",
      *         ),
      *         @OA\Property(
      *             property="nombre",

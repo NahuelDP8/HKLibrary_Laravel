@@ -77,7 +77,7 @@ class PedidoController extends Controller
      *             @OA\Property(
      *                 property="id",
      *                 type="integer",
-     *                 example="3"
+     *                 example="2"
      *             ),
      *             @OA\Property(
      *                 property="cantidad",
@@ -101,11 +101,6 @@ class PedidoController extends Controller
      *             example=149,
      *         ),
      *         @OA\Property(
-     *             property="type",
-     *             type="string",
-     *             example="Pedido",
-     *         ),
-     *         @OA\Property(
      *             property="fecha",
      *             type="string",
      *             example="2023-05-08",
@@ -119,10 +114,9 @@ class PedidoController extends Controller
      *             property="cliente",
      *             type="object",
      *             @OA\Property(
-     *                 property="mail",
-     *                 description="The email of the client",
-     *                 type="string",
-     *                 example="user@example.com",
+     *                 property="id",
+     *                 type="integer",
+     *                 example=107,
      *             ),
      *             @OA\Property(
      *                 property="nombre",
@@ -140,9 +134,10 @@ class PedidoController extends Controller
      *                 example="Calle Bonita 1234",
      *             ),
      *             @OA\Property(
-     *                 property="id",
-     *                 type="integer",
-     *                 example=107,
+     *                 property="mail",
+     *                 description="The email of the client",
+     *                 type="string",
+     *                 example="user@example.com",
      *             ),
      *         ),
      *         @OA\Property(

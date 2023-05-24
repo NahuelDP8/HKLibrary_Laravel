@@ -99,8 +99,8 @@ class LibroController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/LibroShow",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/LibroIndex"),
      *              ),
      *              
      *          ),
@@ -145,8 +145,8 @@ class LibroController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/LibroShow",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/LibroIndex"),
      *              ),
      *              
      *          ),
@@ -193,8 +193,8 @@ class LibroController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(
      *                  property="data",
-     *                  type="object",
-     *                  ref="#/components/schemas/LibroShow",
+     *                  type="array",
+     *                  @OA\Items(ref="#/components/schemas/LibroIndex"),
      *              ),
      *              
      *          ),

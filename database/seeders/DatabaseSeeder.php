@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             pedido_libroSeeder::class,
             libro_generoSeeder::class,
             libro_autorSeeder::class,
+            usersSeeder::class,
         ]);
     }
 }

@@ -122,3 +122,38 @@ Confirmar pedido(Agregar mail, nombre, apellido, dirección)
 ![Diagrama ER](documentacion/DiagramaER.png)  
 
 
+# Etapa 2: Proyecto Framework PHP - Laravel
+
+## Deployment
+Link: https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/
+
+### Administradores
+Usuario: admin@iaw.com | Contraseña: admin123
+Usuario: pixelpioneers888@gmail.com | Contraseña: admin123
+
+### API
+Swagger UI: https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1/documentation  
+Url Base: https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1  
+
+## Librerias Externas Utilizadas
+
+### Boostrap
+Versión: 5.2.3  
+Link: https://getbootstrap.com/docs/5.2/getting-started/introduction/  
+
+### jQuery
+Versión: 3.7.0  
+Link: https://jquery.com/  
+
+### Select2
+Versión: 4.1.0  
+Link: https://select2.org/  
+
+### Datatables
+Verisón: 1.13.4  
+Link: https://datatables.net/  
+
+
+
+
+

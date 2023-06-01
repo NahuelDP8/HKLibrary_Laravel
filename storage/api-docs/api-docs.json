@@ -1,0 +1,751 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Libreria",
+        "description": "Esta API puede usarse para obtener información sobre los libros, autores y generos de la librería, y crear un pedido.\n *      Si la url para la API no tiene el formato adecuado o no existe, se retornará un json con un mensaje indicándoselo.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://pixel-pioneers-laravel-git-etapa2-pixel-pioneer.vercel.app/rest/v1"
+        }
+    ],
+    "paths": {
+        "/autores": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "description": "Devuelve la información de todos los autores que tiene registrados la tienda.",
+                "operationId": "4c3f42b10312ca8fd8ad74da9b613905",
+                "responses": {
+                    "200": {
+                        "description": "Los autores pudieron recuperarse exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AutorIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/autores/{id}": {
+            "get": {
+                "tags": [
+                    "Autores"
+                ],
+                "description": "Devuelve la información del autor con la id especificada. Incluyendo los libros de su autoría que esten disponibles en la tienda.",
+                "operationId": "81fd6d7c19b8f8dbd15266322f1e82e9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Autor encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/AutorShow"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe Autor con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Autor No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/generos": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "description": "Devuelve la información de los generos de libros que ofrece la tienda",
+                "operationId": "451b1c5b2bda7c4768031e1f49487d58",
+                "responses": {
+                    "200": {
+                        "description": "Los generos pudieron recuperarse exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/GeneroIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/generos/{id}": {
+            "get": {
+                "tags": [
+                    "Generos"
+                ],
+                "description": "Devuelve la información del genero con la id especificada",
+                "operationId": "1bdc2a955938ce859c80c39ba48fd7c9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Genero encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/GeneroShow"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe Genero con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Genero No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve la información de todos los libros de la tienda.",
+                "operationId": "97b0f57b53a99ef52d22077c1fabf00e",
+                "responses": {
+                    "200": {
+                        "description": "Los libros pudieron recuperarse exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros/{id}": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve la información del libro con la id especificada",
+                "operationId": "e95837776da37090df39d0d80ee6511d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libro encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/LibroShow"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe libro con la id provista",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "Libro No Encontrado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros/{titulo}/searchTitle": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve los libros que contengan en su titulo el termino especificado",
+                "operationId": "346f9e4a88457feb0f17fca4384a99b0",
+                "parameters": [
+                    {
+                        "name": "titulo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libros encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron libros con el termino especificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "No se encontraron libros con el termino especificado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros/{genero}/searchGenre": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve los libros que contengan el termino especificado en el parametro",
+                "operationId": "4a56da8964d52fdaf327882c11128106",
+                "parameters": [
+                    {
+                        "name": "genero",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libros encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron libros con el genero especificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "No se encontraron libros con el genero especificado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/libros/{nombreAutor}/searchAuthor": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "description": "Devuelve los libros escritos por el autor especificado. El parametro puede contener mas de un nombre o apellido siempre y cuando esten separados por espacios.",
+                "operationId": "43911efbde908d23122c5def2f76cf1c",
+                "parameters": [
+                    {
+                        "name": "nombreAutor",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libros encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LibroIndex"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron libros con los autores especificado",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "error": "No se encontraron libros con los autores especificado"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pedidos": {
+            "post": {
+                "tags": [
+                    "Pedido"
+                ],
+                "summary": "Crear un nuevo pedido",
+                "description": "Crear un nuevo pedido con la información del cliente y los libros elegidos",
+                "operationId": "e65634f7c48d7ab1db83d02751a13dd9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PedidoBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pedido creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PedidoCreado"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Formato invalido para los datos"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PedidoBody": {
+                "properties": {
+                    "cliente": {
+                        "properties": {
+                            "nombre": {
+                                "type": "string",
+                                "example": "Tom"
+                            },
+                            "apellido": {
+                                "type": "string",
+                                "example": "Perez"
+                            },
+                            "mail": {
+                                "type": "string",
+                                "format": "email"
+                            },
+                            "direccion": {
+                                "type": "string",
+                                "example": "Calle Bonita 1234"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "cantidad": {
+                                    "type": "integer",
+                                    "example": "4"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PedidoCreado": {
+                "required": [
+                    "data"
+                ],
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": 149
+                            },
+                            "fecha": {
+                                "type": "string",
+                                "example": "2023-05-08"
+                            },
+                            "precio_total": {
+                                "type": "number",
+                                "example": 2095442.58
+                            },
+                            "cliente": {
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 107
+                                    },
+                                    "nombre": {
+                                        "type": "string",
+                                        "example": "Tom"
+                                    },
+                                    "apellido": {
+                                        "type": "string",
+                                        "example": "Perez"
+                                    },
+                                    "direccion": {
+                                        "type": "string",
+                                        "example": "Calle Bonita 1234"
+                                    },
+                                    "mail": {
+                                        "description": "The email of the client",
+                                        "type": "string",
+                                        "example": "user@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "libros": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "titulo": {
+                                            "type": "string",
+                                            "example": "Enim quia culpa nihil est."
+                                        },
+                                        "precio_unitario": {
+                                            "type": "string",
+                                            "example": "698480.86"
+                                        },
+                                        "cantidad_unidades": {
+                                            "type": "integer",
+                                            "example": 3
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "AutorShow": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Nombre Autor"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "example": "Apellido Autor"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LibroIndex"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "AutorIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "example": "Nombre Autor"
+                    },
+                    "apellido": {
+                        "type": "string",
+                        "example": "Apellido Autor"
+                    }
+                },
+                "type": "object"
+            },
+            "GeneroShow": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre_genero": {
+                        "type": "string",
+                        "example": "Terror"
+                    },
+                    "libros": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LibroIndex"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "GeneroIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nombre_genero": {
+                        "type": "string",
+                        "example": "Terror"
+                    }
+                },
+                "type": "object"
+            },
+            "LibroShow": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "titulo": {
+                        "type": "string",
+                        "example": "Titulo Libro"
+                    },
+                    "precio": {
+                        "type": "string",
+                        "example": "940338"
+                    },
+                    "cantidad_paginas": {
+                        "type": "integer",
+                        "example": 1177
+                    },
+                    "disponibilidad": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "url_imagen": {
+                        "type": "string",
+                        "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Descripción del libro"
+                    },
+                    "autores": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "nombre": {
+                                    "type": "string",
+                                    "example": "Mathilde"
+                                },
+                                "apellido": {
+                                    "type": "string",
+                                    "example": "Reinger"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "generos": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "nombre_genero": {
+                                    "type": "string",
+                                    "example": "Terror"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LibroIndex": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "titulo": {
+                        "type": "string",
+                        "example": "Titulo Libro"
+                    },
+                    "precio": {
+                        "type": "string",
+                        "example": "940338"
+                    },
+                    "cantidad_paginas": {
+                        "type": "integer",
+                        "example": 1177
+                    },
+                    "disponibilidad": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "url_imagen": {
+                        "type": "string",
+                        "example": "https://pzwiki.net/w/images/a/ac/SkillBookAnim_120px.gif"
+                    },
+                    "autores": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "154"
+                                },
+                                "nombre": {
+                                    "type": "string",
+                                    "example": "Mathilde"
+                                },
+                                "apellido": {
+                                    "type": "string",
+                                    "example": "Reinger"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "generos": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "6"
+                                },
+                                "nombre_genero": {
+                                    "type": "string",
+                                    "example": "Terror"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Libros",
+            "description": "Listar y mostrar libro."
+        },
+        {
+            "name": "Autores",
+            "description": "Listar y mostrar autor."
+        },
+        {
+            "name": "Generos",
+            "description": "Listar y mostrar generos."
+        },
+        {
+            "name": "Pedido",
+            "description": "Crear pedido."
+        }
+    ]
+}

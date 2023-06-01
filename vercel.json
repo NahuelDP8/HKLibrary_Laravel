@@ -1,9 +1,17 @@
 {
     "version": 2,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.5.2" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
+        {
+            "src": "/build/(.*)",
+            "dest": "/build/$1"
+        },
+        {
+            "src": "/images/(.*)",
+            "dest": "/images/$2"
+        },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
@@ -23,6 +31,6 @@
 
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
+        "SESSION_DRIVER": "database"
     }
 }

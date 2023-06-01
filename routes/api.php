@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\api\AutorController;
+use App\Http\Controllers\api\LibroController;
+use App\Http\Controllers\api\GeneroController;
+use App\Http\Controllers\api\PedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +20,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('v1')->group(function(){
+    Route::get('libros',[LibroController::class,'index']);
+    Route::get('libros/{id}',[LibroController::class,'show'])->whereNumber('id');
+    Route::get('libros/{titulo}/searchTitle',[LibroController::class,'searchByTitle']);
+    Route::get('libros/{genero}/searchGenre',[LibroController::class,'searchByGenre']);
+    Route::get('libros/{nombreAutor}/searchAuthor',[LibroController::class,'searchByAuthor']);
+
+    Route::get('autores',[AutorController::class,'index']);
+    Route::get('autores/{id}',[AutorController::class,'show'])->whereNumber('id');
+
+    Route::get('generos',[GeneroController::class,'index']);
+    Route::get('generos/{id}',[GeneroController::class,'show'])->whereNumber('id');
+
+    Route::apiResource('pedidos', PedidoController::class)->only(['store']);
+
+
+    Route::fallback(function(){
+        return response()->json(['error'=>'Ruta incorrecta para la API. Revise la documentación.'], 400);
+    });
 });

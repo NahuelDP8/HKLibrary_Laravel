@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\AutorController;
+use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,30 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware('auth')->group(function(){
+    Route::resource('libros', LibroController::class)->except(['destroy'])->whereNumber('libro');
+    Route::resource('pedidos', PedidoController::class)->only(['index','show'])->whereNumber('pedido');
+    Route::resource('generos',GeneroController::class)->except(['destroy'])->whereNumber('genero');
+
+    Route::get('autores',[AutorController::class,'index'])->name('autores.index');
+    Route::get('autores/create',[AutorController::class,'create'])->name('autores.create');
+    Route::post('autores',[AutorController::class,'store'])->name('autores.store');
+    Route::get('autores/{autor}/edit',[AutorController::class,'edit'])->name('autores.edit')->whereNumber('autor');
+    Route::get('autores/{autor}',[AutorController::class,'show'])->name('autores.show')->whereNumber('autor');
+    Route::put('autores/{autor}',[AutorController::class,'update'])->name('autores.update')->whereNumber('autor');
+});
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

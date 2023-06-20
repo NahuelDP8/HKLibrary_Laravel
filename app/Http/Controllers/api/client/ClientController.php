@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    //
+    public function showClientOrders($clientId){
+        return "pedidos del cliente $clientId";
+    }
 }

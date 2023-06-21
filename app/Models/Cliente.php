@@ -12,6 +12,13 @@ class Cliente extends Model
     use HasApiTokens, HasFactory;
     protected $table = 'cliente';
     protected $hidden = ['created_at','updated_at'];
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'direccion',
+        'mail',
+        'password',
+    ];
 
     public function pedidos():HasMany{
         return $this->hasMany(Pedido::class,'idCliente');

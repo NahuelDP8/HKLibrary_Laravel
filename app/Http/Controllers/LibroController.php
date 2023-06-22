@@ -7,6 +7,7 @@ use App\Models\Autor;
 use App\Models\Genero;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class LibroController extends Controller
 {
@@ -56,11 +57,12 @@ class LibroController extends Controller
 
     
     public function update(Request $request, Libro $libro){
+        dd("hola");
         $request->validate([
             'titulo' => 'required|string|max:100',
             'descripcion' => 'required|string|max:10000',
             'cantidadPaginas' => 'required|integer',
-            'urlImagen' => 'required|string|max:4096',
+            'urlImagen' => 'required|image',
             'disponible' => 'required|boolean',
             'precio' => 'required',
             'autores' => 'required|array',
@@ -76,6 +78,11 @@ class LibroController extends Controller
         $libro->disponible= $request->input('disponible');
         $libro->generos()->sync($request->generos);
         $libro->autores()->sync($request->autores);
+        
+        $image = $request->file('urlImagen');
+        $uploadedFile = $image->storeOnCloudinary('items');
+        $libro->urlImagen = $uploadedFile->getSecurePath();
+
         $libro->save();
         return redirect()->route('libros.index')->with('success', 'Libro actualizado exitosamente');
     }

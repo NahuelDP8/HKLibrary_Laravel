@@ -81,7 +81,9 @@ class LibroController extends Controller
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
-        
+        echo $request;
+        echo $request->file('urlImagen');
+        echo $libro->urlImagen;
         $libro->titulo = $request->input('titulo');
         $libro->descripcion = $request->input('descripcion');
         $libro->cantidadPaginas = $request->input('cantidadPaginas');

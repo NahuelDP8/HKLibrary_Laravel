@@ -8,6 +8,8 @@ use App\Models\Genero;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Cloudinary\Api\Exception\ApiError;
+use Cloudinary\Api\Upload\UploadApi;
 
 class LibroController extends Controller
 {
@@ -80,8 +82,9 @@ class LibroController extends Controller
 
         $imagenAnterior = $libro->urlImagen;
         if (!empty($imagenAnterior)) {
-            $publicId = cloudinary()->getPublicIdFromUrl($imagenAnterior);
-            cloudinary()->destroy($publicId);
+            $token = explode('/', $imagenAnterior);
+            $token2 = explode('.', $token[sizeof($token)-1]);
+            Cloudinary::destroy ('Books/'.$token2[0]);
         }
         $libro->titulo = $request->input('titulo');
         $libro->descripcion = $request->input('descripcion');
@@ -89,13 +92,11 @@ class LibroController extends Controller
         $libro->cantidadPaginas = $request->input('cantidadPaginas');
         $libro->precio = $request->input('precio');
         $libro->disponible= $request->input('disponible');
-        $libro->generos()->sync($request->generos);
-        $libro->autores()->sync($request->autores);
-        
         $image = $request->file('urlImagen');
         $uploadedFile = $image->storeOnCloudinary('Books');
         $libro->urlImagen = $uploadedFile->getSecurePath();
-
+        $libro->generos()->sync($request->generos);
+        $libro->autores()->sync($request->autores);
         $libro->save();
         return redirect()->route('libros.index')->with('success', 'Libro actualizado exitosamente');
     }

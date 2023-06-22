@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api\client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PedidoResource;
 use App\Models\Cliente;
+use App\Models\Pedido;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -76,7 +78,16 @@ class ClientAPIController extends Controller
         return $jsonResponse;
     }
 
-    public function showClientOrders(Request $request){
-        return "pedidos cliente ".$request->id;
+    public function showClientOrders($clientId){
+        $jsonResponse = null;
+        
+        if(Auth::user()->id != $clientId){
+            $jsonResponse = $this->error("", "Acceso denegado.", 403);
+        }else{
+            $pedidos = Pedido::where('idCliente', $clientId)->get();     
+            $jsonResponse = PedidoResource::collection($pedidos);
+        }
+
+        return $jsonResponse;
     }
 }

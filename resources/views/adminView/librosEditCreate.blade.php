@@ -28,7 +28,7 @@
             @if(isset($libro) && $libro->urlImagen)
                 <img src="{{ $libro->urlImagen }}" alt="Libro Image" class="my-1 maxSize300">
             @endif
-            <input type="file" class="form-control-file" id="urlImage" name="urlImagen" value="{{ isset($libro) ? $libro->urlImagen : "" }}">
+            <input type="file" class="form-control-file" id="urlImage" name="urlImagen">
         </div>
 
         <div class="mb-2">

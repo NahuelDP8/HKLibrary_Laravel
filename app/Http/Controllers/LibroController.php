@@ -76,7 +76,7 @@ class LibroController extends Controller
             'titulo' => 'required|string|max:100',
             'descripcion' => 'required|string|max:10000',
             'cantidadPaginas' => 'required|integer',
-            'urlImagen' => 'required|image',
+            'urlImagen' => 'image',
             'disponible' => 'required|boolean',
             'precio' => 'required',
             'autores' => 'required|array',

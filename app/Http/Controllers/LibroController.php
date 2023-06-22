@@ -30,12 +30,13 @@ class LibroController extends Controller
             'titulo' => 'required|string|max:100',
             'descripcion' => 'required|string|max:10000',
             'cantidadPaginas' => 'required|integer',
-            'urlImagen' => 'required|string|max:4096',
+            'urlImagen' => 'required|image',
             'disponible' => 'required|boolean',
             'precio' => 'required',
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
+        
         $libro = Libro::create($request->all()); 
         $libro->generos()->attach($request->generos);
         $libro->autores()->attach($request->autores);
@@ -57,7 +58,6 @@ class LibroController extends Controller
 
     
     public function update(Request $request, Libro $libro){
-        dd("hola");
         $request->validate([
             'titulo' => 'required|string|max:100',
             'descripcion' => 'required|string|max:10000',

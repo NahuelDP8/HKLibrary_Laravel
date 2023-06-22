@@ -36,7 +36,7 @@ class LibroController extends Controller
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
-        $uploadedFile = Cloudinary::upload($request->file('imagen')->getRealPath(), [
+        $uploadedFile = Cloudinary::upload($request->file('urlImagen')->getRealPath(), [
             'folder' => 'Books' 
         ]);
         $libro = new Libro();

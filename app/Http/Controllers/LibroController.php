@@ -38,18 +38,19 @@ class LibroController extends Controller
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
+        $libro = new Libro();
+        $libro->generos()->attach($request->generos);
+        $libro->autores()->attach($request->autores);
         $uploadedFile = Cloudinary::upload($request->file('urlImagen')->getRealPath(), [
             'folder' => 'Books' 
         ]);
-        $libro = new Libro();
+        
         $libro->titulo = $request->input('titulo');
         $libro->descripcion = $request->input('descripcion');
         $libro->cantidadPaginas = $request->input('cantidadPaginas');
         $libro->precio = $request->input('precio');
         $libro->disponible= $request->input('disponible');
         $libro->urlImagen = $uploadedFile->getSecurePath();
-        $libro->generos()->attach($request->generos);
-        $libro->autores()->attach($request->autores);
         $libro->save();
         return redirect()->route('libros.index')->with('success', 'Libro creado exitosamente');
     }

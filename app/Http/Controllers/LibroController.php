@@ -39,8 +39,7 @@ class LibroController extends Controller
             'generos' => 'required|array',
         ]);
         $libro = new Libro();
-        $libro->generos()->attach($request->generos);
-        $libro->autores()->attach($request->autores);
+        
         $uploadedFile = Cloudinary::upload($request->file('urlImagen')->getRealPath(), [
             'folder' => 'Books' 
         ]);
@@ -52,6 +51,9 @@ class LibroController extends Controller
         $libro->disponible= $request->input('disponible');
         $libro->urlImagen = $uploadedFile->getSecurePath();
         $libro->save();
+        $libro->generos()->sync($request->generos);
+        $libro->autores()->sync($request->autores);
+       
         return redirect()->route('libros.index')->with('success', 'Libro creado exitosamente');
     }
 
@@ -96,9 +98,10 @@ class LibroController extends Controller
         $image = $request->file('urlImagen');
         $uploadedFile = $image->storeOnCloudinary('Books');
         $libro->urlImagen = $uploadedFile->getSecurePath();
-        $libro->generos()->sync($request->generos);
-        $libro->autores()->sync($request->autores);
         $libro->save();
+        $libro->generos()->attach($request->generos);
+        $libro->autores()->attach($request->autores);
+        
         return redirect()->route('libros.index')->with('success', 'Libro actualizado exitosamente');
     }
     

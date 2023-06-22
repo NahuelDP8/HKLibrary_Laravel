@@ -82,8 +82,7 @@ class LibroController extends Controller
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
-
-        $imagenAnterior = $libro->urlImagen;
+        
         $libro->titulo = $request->input('titulo');
         $libro->descripcion = $request->input('descripcion');
         $libro->urlImagen = $request->input('urlImagen');
@@ -91,9 +90,8 @@ class LibroController extends Controller
         $libro->precio = $request->input('precio');
         $libro->disponible= $request->input('disponible');
         $image = $request->file('urlImagen');
-        if($imagenAnterior==$image){
-            $libro->urlImagen=$imagenAnterior;
-        }else{
+        if($image!=null){
+            $imagenAnterior = $libro->urlImagen;
             $token = explode('/', $imagenAnterior);
             $token2 = explode('.', $token[sizeof($token)-1]);
             Cloudinary::destroy ('Books/'.$token2[0]);

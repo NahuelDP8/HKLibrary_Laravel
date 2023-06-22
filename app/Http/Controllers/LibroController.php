@@ -51,8 +51,8 @@ class LibroController extends Controller
         $libro->disponible= $request->input('disponible');
         $libro->urlImagen = $uploadedFile->getSecurePath();
         $libro->save();
-        $libro->generos()->sync($request->generos);
-        $libro->autores()->sync($request->autores);
+        $libro->generos()->attach($request->generos);
+        $libro->autores()->attach($request->autores);
        
         return redirect()->route('libros.index')->with('success', 'Libro creado exitosamente');
     }

@@ -36,10 +36,19 @@ class LibroController extends Controller
             'autores' => 'required|array',
             'generos' => 'required|array',
         ]);
-        
-        $libro = Libro::create($request->all()); 
+        $uploadedFile = Cloudinary::upload($request->file('imagen')->getRealPath(), [
+            'folder' => 'Books' 
+        ]);
+        $libro = new Libro();
+        $libro->titulo = $request->input('titulo');
+        $libro->descripcion = $request->input('descripcion');
+        $libro->cantidadPaginas = $request->input('cantidadPaginas');
+        $libro->precio = $request->input('precio');
+        $libro->disponible= $request->input('disponible');
+        $libro->urlImagen = $uploadedFile->getSecurePath();
         $libro->generos()->attach($request->generos);
         $libro->autores()->attach($request->autores);
+        $libro->save();
         return redirect()->route('libros.index')->with('success', 'Libro creado exitosamente');
     }
 
@@ -69,7 +78,11 @@ class LibroController extends Controller
             'generos' => 'required|array',
         ]);
 
-       
+        $imagenAnterior = $libro->urlImagen;
+        if (!empty($imagenAnterior)) {
+            $publicId = cloudinary()->getPublicIdFromUrl($imagenAnterior);
+            cloudinary()->destroy($publicId);
+        }
         $libro->titulo = $request->input('titulo');
         $libro->descripcion = $request->input('descripcion');
         $libro->urlImagen = $request->input('urlImagen');
@@ -80,7 +93,7 @@ class LibroController extends Controller
         $libro->autores()->sync($request->autores);
         
         $image = $request->file('urlImagen');
-        $uploadedFile = $image->storeOnCloudinary('items');
+        $uploadedFile = $image->storeOnCloudinary('Books');
         $libro->urlImagen = $uploadedFile->getSecurePath();
 
         $libro->save();

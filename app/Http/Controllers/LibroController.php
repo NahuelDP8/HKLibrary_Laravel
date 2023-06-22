@@ -11,8 +11,6 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Cloudinary\Api\Exception\ApiError;
 use Cloudinary\Api\Upload\UploadApi;
 
-use function PHPUnit\Framework\isEmpty;
-
 class LibroController extends Controller
 {
     
@@ -89,7 +87,8 @@ class LibroController extends Controller
         $libro->precio = $request->input('precio');
         $libro->disponible= $request->input('disponible');
         $image = $request->file('urlImagen');
-        if(isEmpty($image)){
+        $libro->urlImagen=$libro->urlImagen;
+        if($image!=null){
             $imagenAnterior = $libro->urlImagen;
             $token = explode('/', $imagenAnterior);
             $token2 = explode('.', $token[sizeof($token)-1]);

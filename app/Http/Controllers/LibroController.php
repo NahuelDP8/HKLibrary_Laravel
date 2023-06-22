@@ -97,8 +97,8 @@ class LibroController extends Controller
             $libro->urlImagen = $uploadedFile->getSecurePath();
         }
         $libro->save();
-        $libro->generos()->attach($request->generos);
-        $libro->autores()->attach($request->autores);
+        $libro->generos()->sync($request->generos);
+        $libro->autores()->sync($request->autores);
         return redirect()->route('libros.index')->with('success', 'Libro actualizado exitosamente');
     }
     

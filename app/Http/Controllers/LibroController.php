@@ -71,6 +71,7 @@ class LibroController extends Controller
 
     
     public function update(Request $request, Libro $libro){
+        dd($request);
         $request->validate([
             'titulo' => 'required|string|max:100',
             'descripcion' => 'required|string|max:10000',

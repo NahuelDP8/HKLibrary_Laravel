@@ -4,14 +4,11 @@ namespace App\Http\Controllers\api\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
-use App\Models\User;
 use App\Traits\HttpResponses;
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\ItemNotFoundException;
 use Illuminate\Validation\Rules\Password;
 
 class ClientAPIController extends Controller
@@ -38,8 +35,6 @@ class ClientAPIController extends Controller
         }else{
             $jsonResponse = $this->error('', 'Credenciales incorrectas', 401);
         }
-
-
 
         return $jsonResponse;
     }
@@ -81,7 +76,7 @@ class ClientAPIController extends Controller
         return $jsonResponse;
     }
 
-    public function showClientOrders(){
-        return "pedidos.";
+    public function showClientOrders(Request $request){
+        return "pedidos cliente ".$request->id;
     }
 }

@@ -36,12 +36,14 @@ Route::prefix('v1')->group(function(){
     Route::get('generos',[GeneroController::class,'index']);
     Route::get('generos/{id}',[GeneroController::class,'show'])->whereNumber('id');
 
-    Route::apiResource('pedidos', PedidoController::class)->only(['store']);
-
     Route::post('login',[ClientAPIController::class, 'login']);
     Route::post('register',[ClientAPIController::class, 'register']);
 
-    Route::get('client/{id}/pedidos', [ClientAPIController::class, 'showClientOrders'])->whereNumber('id');
+    Route::middleware('auth:api-clients')->group(function(){
+        Route::apiResource('pedidos', PedidoController::class)->only(['store']);
+        Route::get('client/{id}/pedidos', [ClientAPIController::class, 'showClientOrders'])->whereNumber('id');
+    });
+    
 
 
     Route::fallback(function(){

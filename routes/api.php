@@ -39,9 +39,10 @@ Route::prefix('v1')->group(function(){
     Route::post('login',[ClientAPIController::class, 'login']);
     Route::post('register',[ClientAPIController::class, 'register']);
 
-    Route::middleware('auth:api-clients')->group(function(){
+    Route::middleware(['auth:sanctum'])->group(function(){
         Route::apiResource('pedidos', PedidoController::class)->only(['store']);
-        Route::get('client/{id}/pedidos', [ClientAPIController::class, 'showClientOrders'])->whereNumber('id');
+        Route::get('client/pedidos', [ClientAPIController::class, 'showClientOrders']);
+        Route::post('logout', [ClientAPIController::class, 'logout']);
     });
     
 

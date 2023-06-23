@@ -30,9 +30,11 @@ class ClientAPIController extends Controller
         }else if($this->isUserValid($request)){
             $client = Cliente::where('mail', $request->email)->first();
 
+            $request->session()->regenerate();
+
             $jsonResponse = $this->success([
                 'client' => $client,
-                'token' => $client->createToken('Api token of '. $client->email)->plainTextToken
+                'token' => $client->createToken('Api token of '. $client->mail)->plainTextToken
             ]);
         }else{
             $jsonResponse = $this->error('', 'Credenciales incorrectas', 401);
@@ -69,24 +71,30 @@ class ClientAPIController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
+            Auth::guard('clients')->login($client);
+
             $jsonResponse = $this->success([
                 'client' => $client,
-                'token' => $client->createToken('API token of '. $client->nombre)->plainTextToken,
+                'token' => $client->createToken('API token of '. $client->mail)->plainTextToken,
             ]);
         }
 
         return $jsonResponse;
     }
 
-    public function showClientOrders($clientId){
+    public function logout(Request $request){
+        Auth::guard('clients')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return $this->success([], "Sesion cerrada exitosamente");
+    }
+
+    public function showClientOrders(){
         $jsonResponse = null;
-        
-        if(Auth::user()->id != $clientId){
-            $jsonResponse = $this->error("", "Acceso denegado.", 403);
-        }else{
-            $pedidos = Pedido::where('idCliente', $clientId)->get();     
-            $jsonResponse = PedidoResource::collection($pedidos);
-        }
+
+        $pedidos = Pedido::where('idCliente', Auth::guard('clients')->user()->id)->get();     
+        $jsonResponse = PedidoResource::collection($pedidos);
 
         return $jsonResponse;
     }

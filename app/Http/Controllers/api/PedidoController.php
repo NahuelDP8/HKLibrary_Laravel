@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Libro;
 use App\Models\Pedido;
-use App\Rules\LibroDisponibleRule;
+use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Validation\Rule;
 
 class PedidoController extends Controller
 {
@@ -169,15 +167,6 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {   
-        //Validar datos del cliente
-        $request->validate([
-            'cliente' =>'required|array:mail,nombre,apellido,direccion',
-            'cliente.mail' => 'required|email',
-            'cliente.nombre' => 'required|string|max:255',
-            'cliente.apellido' => 'required|string|max:255',
-            'cliente.direccion' => 'required|string|max:255'
-        ]);
-
         //Validación de los libros
         $request->validate([
             'libros' => 'required|array',
@@ -190,18 +179,7 @@ class PedidoController extends Controller
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
 
-        //Si el cliente existe, obtenerlo, sino crear nuevo cliente
-        $clientMail = $request->input('cliente.mail');
-        if(Cliente::where('mail', $clientMail)->exists()){
-            $client = Cliente::where('mail', $clientMail)->first();
-        }else{
-            $client = new Cliente();
-            $client->mail = $clientMail;
-            $client->nombre = $request->input('cliente.nombre');
-            $client->apellido = $request->input('cliente.apellido');
-            $client->direccion = $request->input('cliente.direccion');
-            $client->save();
-        }
+        $client = Auth::guard('clients')->user();
 
         //Crear pedido y asociarle el cliente
         $pedido = new Pedido();

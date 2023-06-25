@@ -179,7 +179,7 @@ class PedidoController extends Controller
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
 
-        $client = Auth::guard('clients')->user();
+        $client = $request->user();
 
         //Crear pedido y asociarle el cliente
         $pedido = new Pedido();

@@ -30,8 +30,6 @@ class ClientAPIController extends Controller
         }else if($this->isUserValid($request)){
             $client = Cliente::where('mail', $request->email)->first();
 
-            $request->session()->regenerate();
-
             $jsonResponse = $this->success([
                 'client' => $client,
                 'token' => $client->createToken('Api token of '. $client->mail)->plainTextToken
@@ -71,8 +69,6 @@ class ClientAPIController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            Auth::guard('clients')->login($client);
-
             $jsonResponse = $this->success([
                 'client' => $client,
                 'token' => $client->createToken('API token of '. $client->mail)->plainTextToken,
@@ -83,17 +79,18 @@ class ClientAPIController extends Controller
     }
 
     public function logout(Request $request){
-        Auth::guard('clients')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $client = $request->user();
+        
+        $client->tokens()->delete();
 
         return $this->success([], "Sesion cerrada exitosamente");
     }
 
-    public function showClientOrders(){
+    public function showClientOrders(Request $request){
         $jsonResponse = null;
 
-        $pedidos = Pedido::where('idCliente', Auth::guard('clients')->user()->id)->get();     
+        $client = $request->user();
+        $pedidos = Pedido::where('idCliente', $client->id)->get();     
         $jsonResponse = PedidoResource::collection($pedidos);
 
         return $jsonResponse;

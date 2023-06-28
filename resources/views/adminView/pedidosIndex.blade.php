@@ -25,7 +25,7 @@
                         <td class="text-center">{{ $pedido->fecha }}</td>
                         <td class="">{{ $pedido->cliente->nombre_completo}}</td>
                         <td class="">{{ $pedido->cliente->mail }}</td>
-                        <td class="text-center">{{ number_format($pedido->precio_total, 2, '.') }}</td>
+                        <td class="text-center">{{ $pedido->precio_total }}</td>
                         <td class="text-center align-middle p-0">
                             <a class="btn btn-primary" href="{{ route('pedidos.show',$pedido->id) }}">Ver detalle</a>
                         </td>

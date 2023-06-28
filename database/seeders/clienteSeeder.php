@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as FakerFactory;
@@ -20,6 +20,7 @@ class clienteSeeder extends Seeder
                 'nombre' => $faker->firstName,
                 'apellido' => $faker->lastName,
                 'direccion' => $faker->address,
+                'password' => Hash::make("client123"),
                 'mail' => $faker->unique()->email,
             ]);
         }

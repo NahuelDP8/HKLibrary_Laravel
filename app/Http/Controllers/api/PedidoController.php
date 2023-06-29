@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
 use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 use MercadoPago;
+use App\Traits\HttpResponses;
 
 class PedidoController extends Controller
 {
@@ -201,10 +202,12 @@ class PedidoController extends Controller
     
             return new PedidoResource($pedido);
         }else{
-            return "No pagaste";
+            return response()->json([
+                'status' => 'Error occurred.',
+                'message' => "Pago no aceptado por Mercado Pago",
+                'data' => "",
+            ], 422);
         }
-        
-       
     }
 
     private function checkMercadoPagoStatus($contents){
@@ -222,15 +225,9 @@ class PedidoController extends Controller
             "type" => $contents['payer']['identification']['type'],
             "number" => $contents['payer']['identification']['number']
         ];
-        $response = [
-            'status' => $payment->status,
-            'status_detail' => $payment->status_detail,
-            'id' => $payment->id
-        ];
         $payment->payer = $payer;
         $payment->save();
-        dd($response,$payment->status,"----",$payment->status==='approved',"----",$payment->status=='approved');
-        return $payment->status==='approved';
+        return $payment->status=='approved';
     }
     
 

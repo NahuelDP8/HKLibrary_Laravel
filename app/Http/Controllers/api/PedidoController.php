@@ -182,7 +182,6 @@ class PedidoController extends Controller
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
         $this->checkMercadoPagoStatus($request->formData);
-        dd("hola",$request->formData);
         $client = $request->user();
 
         //Crear pedido y asociarle el cliente
@@ -204,8 +203,6 @@ class PedidoController extends Controller
     }
 
     private function checkMercadoPagoStatus($formData){
-        dd($formData);
-        dd( $contents = $formData->json()->all());
        
         MercadoPago\SDK::setAccessToken('TEST-4515228768272673-062018-62a67988a77c5b1d9e16d60db78985fc-607933933');
         $contents = $formData->json()->all();

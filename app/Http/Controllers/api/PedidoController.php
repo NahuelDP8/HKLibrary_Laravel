@@ -225,7 +225,7 @@ class PedidoController extends Controller
         
         $payment->payer = $payer;
         $payment->save();
-        return $payment->status=='approved';
+        return $payment->status==='approved';
     }
     
 

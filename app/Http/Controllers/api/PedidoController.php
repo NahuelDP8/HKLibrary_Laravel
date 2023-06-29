@@ -10,6 +10,8 @@ use App\Models\Libro;
 use App\Models\Pedido;
 use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
+use Symfony\Component\Mime\Part\Multipart\FormDataPart;
+use MercadoPago;
 
 class PedidoController extends Controller
 {
@@ -165,8 +167,9 @@ class PedidoController extends Controller
      *
      *
      */
+
     public function store(Request $request)
-    {   
+    {  
         //Validación de los libros
         $request->validate([
             'libros' => 'required|array',
@@ -178,7 +181,8 @@ class PedidoController extends Controller
             ],
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
-
+        $this->checkMercadoPagoStatus($request->formData);
+        dd("hola",$request->formData);
         $client = $request->user();
 
         //Crear pedido y asociarle el cliente
@@ -199,7 +203,38 @@ class PedidoController extends Controller
         return new PedidoResource($pedido);
     }
 
-
+    private function checkMercadoPagoStatus($formData){
+        dd($formData);
+        dd( $contents = $formData->json()->all());
+       
+        MercadoPago\SDK::setAccessToken('TEST-4515228768272673-062018-62a67988a77c5b1d9e16d60db78985fc-607933933');
+        $contents = $formData->json()->all();
+        
+        $payment = new MercadoPago\Payment();
+        $payment->transaction_amount = $contents['transaction_amount'];
+        $payment->token = $contents['token'];
+        $payment->installments = $contents['installments'];
+        $payment->payment_method_id = $contents['payment_method_id'];
+        $payment->issuer_id = $contents['issuer_id'];
+        $payer = new MercadoPago\Payer();
+        $payer->email = $contents['payer']['email'];
+        $payer->identification = [
+            "type" => $contents['payer']['identification']['type'],
+            "number" => $contents['payer']['identification']['number']
+        ];
+        
+        $payment->payer = $payer;
+        $payment->save();
+        
+        $response = [
+            'status' => $payment->status,
+            'status_detail' => $payment->status_detail,
+            'id' => $payment->id
+        ];
+        
+        return response()->json($response);
+    }
+    
 
     
 

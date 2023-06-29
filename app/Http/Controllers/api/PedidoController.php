@@ -202,10 +202,9 @@ class PedidoController extends Controller
         return new PedidoResource($pedido);
     }
 
-    private function checkMercadoPagoStatus($formData){
-       
+    private function checkMercadoPagoStatus($contents){
+       dd($contents);
         MercadoPago\SDK::setAccessToken('TEST-4515228768272673-062018-62a67988a77c5b1d9e16d60db78985fc-607933933');
-        $contents = $formData->json()->all();
         
         $payment = new MercadoPago\Payment();
         $payment->transaction_amount = $contents['transaction_amount'];

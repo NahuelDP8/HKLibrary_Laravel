@@ -24,7 +24,7 @@ class libroSeeder extends Seeder
                 'cantidadPaginas' => $faker->numberBetween(100,2000),
                 'urlImagen' => "https://res.cloudinary.com/dvzoxqcjf/image/upload/v1687447717/imageNotFound.png",
                 'disponible' => $faker->boolean(),
-                'precio' => $faker->randomFloat(2, 1000, 999999.99),
+                'precio' => $faker->randomFloat(2, 50, 2000.99),
             ]);
         }
     }

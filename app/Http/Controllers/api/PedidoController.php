@@ -222,10 +222,14 @@ class PedidoController extends Controller
             "type" => $contents['payer']['identification']['type'],
             "number" => $contents['payer']['identification']['number']
         ];
-        
+        $response = [
+            'status' => $payment->status,
+            'status_detail' => $payment->status_detail,
+            'id' => $payment->id
+        ];
         $payment->payer = $payer;
         $payment->save();
-        dd($payment->status,"----",$payment->status==='approved',"----",$payment->status=='approved');
+        dd($response,$payment->status,"----",$payment->status==='approved',"----",$payment->status=='approved');
         return $payment->status==='approved';
     }
     

@@ -181,25 +181,30 @@ class PedidoController extends Controller
             ],
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
-        $this->checkMercadoPagoStatus($request->formData);
-        $client = $request->user();
-
-        //Crear pedido y asociarle el cliente
-        $pedido = new Pedido();
-        $pedido->fecha = CarbonImmutable::today()->format('Y-m-d');
-        $pedido->cliente()->associate($client);
-        $pedido->save();
-
-        //Crear colleccion de libros para vincularlos al pedido
-        $books = collect($request->input('libros'));
-        $booksAttach = $books->mapWithKeys(function(array $item, int $key){
-            $LibroModel = Libro::find($item['id']);
-            return [$item['id'] => ['cantidadUnidades' => $item['cantidad'], 'precioUnitario' => $LibroModel->precio]];
-        });
-
-        $pedido->libros()->attach($booksAttach);
-
-        return new PedidoResource($pedido);
+        $paymentApproved=$this->checkMercadoPagoStatus($request->formData);
+        if($paymentApproved){
+            $client = $request->user();
+            //Crear pedido y asociarle el cliente
+            $pedido = new Pedido();
+            $pedido->fecha = CarbonImmutable::today()->format('Y-m-d');
+            $pedido->cliente()->associate($client);
+            $pedido->save();
+    
+            //Crear colleccion de libros para vincularlos al pedido
+            $books = collect($request->input('libros'));
+            $booksAttach = $books->mapWithKeys(function(array $item, int $key){
+                $LibroModel = Libro::find($item['id']);
+                return [$item['id'] => ['cantidadUnidades' => $item['cantidad'], 'precioUnitario' => $LibroModel->precio]];
+            });
+    
+            $pedido->libros()->attach($booksAttach);
+    
+            return new PedidoResource($pedido);
+        }else{
+            return "No pagaste";
+        }
+        
+       
     }
 
     private function checkMercadoPagoStatus($contents){
@@ -220,14 +225,7 @@ class PedidoController extends Controller
         
         $payment->payer = $payer;
         $payment->save();
-        
-        $response = [
-            'status' => $payment->status,
-            'status_detail' => $payment->status_detail,
-            'id' => $payment->id
-        ];
-        dd($response);
-        return response()->json($response);
+        return $payment->status=='approved';
     }
     
 

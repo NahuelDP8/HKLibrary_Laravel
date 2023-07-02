@@ -31,6 +31,6 @@ class Pedido extends Model
             $precioTotal += $precioUni * $cantUni;
         }
 
-        return $precioTotal;
+        return number_format($precioTotal,2);
     }
 }

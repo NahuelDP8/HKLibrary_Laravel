@@ -23,7 +23,7 @@ class libro_generoSeeder extends Seeder
                 while (in_array($idGenero, $arrayIdGenero)) {
                     $idGenero = $faker->numberBetween(1, 30);
                 }
-                $arrayidGenero[] = $idGenero;
+                $arrayIdGenero[] = $idGenero;
                 DB::table('libro_genero')->insert([
                     'idLibro' => $idLibro,
                     'idGenero' => $idGenero,

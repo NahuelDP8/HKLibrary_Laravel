@@ -55,7 +55,7 @@
     <tfoot>
       <tr>
         <td colspan="3" class="text-right">Total:</td>
-        <td class="text-end">${{ number_format($pedido->precio_total, 2, ',', '.') }}</td>
+        <td class="text-end">${{ $pedido->precio_total }}</td>
       </tr>
     </tfoot>
   </table>

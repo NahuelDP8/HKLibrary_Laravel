@@ -17,6 +17,7 @@ class PedidoResource extends JsonResource
     {
         $titulosLibros = $this->libros->map(function(Libro $item, int $key){
             return [
+                'id' => $item->id,
                 'titulo' => $item->titulo, 
                 'precio_unitario' => $item->precio,
                 'cantidad_unidades' => $item->pivot->cantidadUnidades

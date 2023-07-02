@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Libro;
 use App\Models\Pedido;
-use App\Rules\LibroDisponibleRule;
+use Illuminate\Support\Facades\Auth;
 use Carbon\CarbonImmutable;
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Validation\Rule;
+use Symfony\Component\Mime\Part\Multipart\FormDataPart;
+use MercadoPago;
+use App\Traits\HttpResponses;
 
 class PedidoController extends Controller
 {
@@ -167,17 +168,9 @@ class PedidoController extends Controller
      *
      *
      */
-    public function store(Request $request)
-    {   
-        //Validar datos del cliente
-        $request->validate([
-            'cliente' =>'required|array:mail,nombre,apellido,direccion',
-            'cliente.mail' => 'required|email',
-            'cliente.nombre' => 'required|string|max:255',
-            'cliente.apellido' => 'required|string|max:255',
-            'cliente.direccion' => 'required|string|max:255'
-        ]);
 
+    public function store(Request $request)
+    {  
         //Validación de los libros
         $request->validate([
             'libros' => 'required|array',
@@ -189,39 +182,54 @@ class PedidoController extends Controller
             ],
             'libros.*.cantidad' => 'required|integer|min:1'
         ]);
-
-        //Si el cliente existe, obtenerlo, sino crear nuevo cliente
-        $clientMail = $request->input('cliente.mail');
-        if(Cliente::where('mail', $clientMail)->exists()){
-            $client = Cliente::where('mail', $clientMail)->first();
+        $paymentApproved=$this->checkMercadoPagoStatus($request->formData);
+        if($paymentApproved){
+            $client = $request->user();
+            //Crear pedido y asociarle el cliente
+            $pedido = new Pedido();
+            $pedido->fecha = CarbonImmutable::today()->format('Y-m-d');
+            $pedido->cliente()->associate($client);
+            $pedido->save();
+    
+            //Crear colleccion de libros para vincularlos al pedido
+            $books = collect($request->input('libros'));
+            $booksAttach = $books->mapWithKeys(function(array $item, int $key){
+                $LibroModel = Libro::find($item['id']);
+                return [$item['id'] => ['cantidadUnidades' => $item['cantidad'], 'precioUnitario' => $LibroModel->precio]];
+            });
+    
+            $pedido->libros()->attach($booksAttach);
+    
+            return new PedidoResource($pedido);
         }else{
-            $client = new Cliente();
-            $client->mail = $clientMail;
-            $client->nombre = $request->input('cliente.nombre');
-            $client->apellido = $request->input('cliente.apellido');
-            $client->direccion = $request->input('cliente.direccion');
-            $client->save();
+            return response()->json([
+                'status' => 'Error occurred.',
+                'message' => "Pago no aceptado por Mercado Pago",
+                'data' => "",
+            ], 422);
         }
-
-        //Crear pedido y asociarle el cliente
-        $pedido = new Pedido();
-        $pedido->fecha = CarbonImmutable::today()->format('Y-m-d');
-        $pedido->cliente()->associate($client);
-        $pedido->save();
-
-        //Crear colleccion de libros para vincularlos al pedido
-        $books = collect($request->input('libros'));
-        $booksAttach = $books->mapWithKeys(function(array $item, int $key){
-            $LibroModel = Libro::find($item['id']);
-            return [$item['id'] => ['cantidadUnidades' => $item['cantidad'], 'precioUnitario' => $LibroModel->precio]];
-        });
-
-        $pedido->libros()->attach($booksAttach);
-
-        return new PedidoResource($pedido);
     }
 
-
+    private function checkMercadoPagoStatus($contents){
+        MercadoPago\SDK::setAccessToken('TEST-4515228768272673-062018-62a67988a77c5b1d9e16d60db78985fc-607933933');
+        
+        $payment = new MercadoPago\Payment();
+        $payment->transaction_amount = $contents['transaction_amount'];
+        $payment->token = $contents['token'];
+        $payment->installments = $contents['installments'];
+        $payment->payment_method_id = $contents['payment_method_id'];
+        $payment->issuer_id = $contents['issuer_id'];
+        $payer = new MercadoPago\Payer();
+        $payer->email = $contents['payer']['email'];
+        $payer->identification = [
+            "type" => $contents['payer']['identification']['type'],
+            "number" => $contents['payer']['identification']['number']
+        ];
+        $payment->payer = $payer;
+        $payment->save();
+        return $payment->status=='approved';
+    }
+    
 
     
 

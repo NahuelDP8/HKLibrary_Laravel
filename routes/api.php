@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AutorController;
+use App\Http\Controllers\api\client\ClientAPIController;
 use App\Http\Controllers\api\LibroController;
 use App\Http\Controllers\api\GeneroController;
 use App\Http\Controllers\api\PedidoController;
@@ -35,7 +36,15 @@ Route::prefix('v1')->group(function(){
     Route::get('generos',[GeneroController::class,'index']);
     Route::get('generos/{id}',[GeneroController::class,'show'])->whereNumber('id');
 
-    Route::apiResource('pedidos', PedidoController::class)->only(['store']);
+    Route::post('login',[ClientAPIController::class, 'login']);
+    Route::post('register',[ClientAPIController::class, 'register']);
+
+    Route::middleware(['auth:sanctum'])->group(function(){
+        Route::apiResource('pedidos', PedidoController::class)->only(['store']);
+        Route::get('client/pedidos', [ClientAPIController::class, 'showClientOrders']);
+        Route::post('logout', [ClientAPIController::class, 'logout']);
+    });
+    
 
 
     Route::fallback(function(){

@@ -1,35 +1,37 @@
-# HKLibrary Frontend Project #
-This project serves as the frontend for a web application designed for a bookshop. The users can explore the book catalog offered by the bookshop using various parameters such as title, genre, and authors. Logged in clients are able to access the shopping cart feature to place and confirm a buy order through a payment service, as well as listing previous orders they have placed.
+# HKLibrary Backend Project #
+This project serves as the backend for a web application designed for a bookshop. Administrators are able to create and edit books, authors, and genres. Additionally, they can list the buy orders received from their clients via the frontend.
 
-For more information about the backend side of the web application, visit the following repository: [HKLibrary Backend Project](https://github.com/JanoALockhart/ProyectoLaravelLibreria2023)
+For more information about the frontend side of the web application, visit the following repository: [HKLibrary Frontend Project](https://github.com/JanoALockhart/ProyectoReactLibreria2023)
 
 
 ## Try the Application
-You can access the deployed version of the application [here](https://proyecto-react-libreria2023.vercel.app/). Use the following credentials to login into the system and the example credit card to simulate a purchase.
+You can access the deployed version of the application [here](https://proyecto-laravel-libreria2023.vercel.app/). Use the following credentials to login into the system.
 
 ### Credentials
-- **Mail:** client@iaw.com
-- **Password:** client123
-
-### Example Credit Card
-- **Card Number:** 5031 7557 3453 0604	
-- **Exp. Date:** 11/25
-- **Code:** 123
-
-For more card examples, visit [Mercado Pago Tarjetas de Prueba](https://www.mercadopago.com.ar/developers/es/docs/checkout-api/additional-content/your-integrations/test/cards).
+- **Email:** admin@iaw.com
+- **Password:** admin123
 
 ## Technologies Used
-![React](https://img.shields.io/badge/react-%2320232a.svg?logo=React&logoColor=%2361DAFB)
-![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?logo=javascript&logoColor=%23F7DF1E)
+
+![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?logo=php&logoColor=white) 
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-%238511FA.svg?logo=bootstrap&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?logo=javascript&logoColor=%23F7DF1E)
+![Postgres](https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white) 
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)
 
-This frontend was implemented using React. Custom CSS and Bootstrap were used for some of the web page's styles.
 
-It retrieves the information provided by the backend's API and it's integrated with Mercado Pago's payment service.
+The application was developed using the **Laravel** framework for **PHP**. The user interface was built using **Blade** templating engine, complemented with **TailwindCSS**, **Bootstrap**, and **JavaScript**.
+ 
+For saving data and images, the project utilizes a 
+database created using **Postgres** and hosted on **Supabase** and an image storage provided by **Cloudinary**. In addition, the application integrates with **Mercado Pago**'s payment service to generate invoices for purchases confirmed through the frontend.
 
-Vercel was used for the deployment of the application.
+**Vercel** was used to deploy and host the application.
+
+### API
+This project provides an API for the frontend side. You can check the API's documentation [here](https://proyecto-laravel-libreria2023.vercel.app/rest/v1/documentation).
 
 ## Credits
 This project was made by: 
